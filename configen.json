@@ -1,0 +1,39 @@
+{
+    "configen": {
+        "version": "4",
+        "sources": [
+            {
+                "id": "main-rbacdb",
+                "path": "rbacdb",
+                "r": true
+            },
+            {
+                "id": "main-internal",
+                "path": "internal",
+                "r": true
+            },
+            {
+                "id": "test",
+                "path": "src/test/code/testcom",
+                "r": true
+            }
+        ],
+        "destinations": [
+            {
+                "id": "main",
+                "path": "gen/gen4securitygorm",
+                "sources": [
+                    "main-internal",
+                    "main-rbacdb"
+                ]
+            },
+            {
+                "id": "test",
+                "path": "gen/gen4securitygormtest",
+                "sources": [
+                    "test"
+                ]
+            }
+        ]
+    }
+}
