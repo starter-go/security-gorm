@@ -9,7 +9,7 @@ import (
 
 // PhoneNumberEntity ...
 type PhoneNumberEntity struct {
-	ID rbac.PhoneNumberID
+	ID rbac.PhoneNumberID `gorm:"primaryKey"`
 
 	BaseEntity
 

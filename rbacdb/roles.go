@@ -9,7 +9,7 @@ import (
 
 // RoleEntity 表示 Role 的数据库实体
 type RoleEntity struct {
-	ID rbac.RoleID
+	ID rbac.RoleID `gorm:"primaryKey"`
 
 	BaseEntity
 

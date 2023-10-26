@@ -6,6 +6,7 @@ import (
     p0d13f39fa "github.com/starter-go/security-gorm/internal/implservice"
     pf5d2c6fae "github.com/starter-go/security-gorm/rbacdb"
     p9621e8b71 "github.com/starter-go/security/random"
+    p2dece1e49 "github.com/starter-go/security/rbac"
      "github.com/starter-go/application"
 )
 
@@ -497,6 +498,50 @@ func (inst*p8617045c5b_impldao_UserDaoImpl) getUUIDService(ie application.Inject
 
 
 
+// type p0d13f39fa.PermissionCacheImpl in package:github.com/starter-go/security-gorm/internal/implservice
+//
+// id:com-0d13f39fa52fea3f-implservice-PermissionCacheImpl
+// class:
+// alias:alias-2dece1e495fd61b93f78009d229f38cf-PermissionCache
+// scope:singleton
+//
+type p0d13f39fa5_implservice_PermissionCacheImpl struct {
+}
+
+func (inst* p0d13f39fa5_implservice_PermissionCacheImpl) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-0d13f39fa52fea3f-implservice-PermissionCacheImpl"
+	r.Classes = ""
+	r.Aliases = "alias-2dece1e495fd61b93f78009d229f38cf-PermissionCache"
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* p0d13f39fa5_implservice_PermissionCacheImpl) new() any {
+    return &p0d13f39fa.PermissionCacheImpl{}
+}
+
+func (inst* p0d13f39fa5_implservice_PermissionCacheImpl) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*p0d13f39fa.PermissionCacheImpl)
+	nop(ie, com)
+
+	
+    com.PermissionService = inst.getPermissionService(ie)
+
+
+    return nil
+}
+
+
+func (inst*p0d13f39fa5_implservice_PermissionCacheImpl) getPermissionService(ie application.InjectionExt)p2dece1e49.PermissionService{
+    return ie.GetComponent("#alias-2dece1e495fd61b93f78009d229f38cf-PermissionService").(p2dece1e49.PermissionService)
+}
+
+
+
 // type p0d13f39fa.PermissionServiceImpl in package:github.com/starter-go/security-gorm/internal/implservice
 //
 // id:com-0d13f39fa52fea3f-implservice-PermissionServiceImpl
@@ -530,6 +575,7 @@ func (inst* p0d13f39fa5_implservice_PermissionServiceImpl) inject(injext applica
 	
     com.PermissionDao = inst.getPermissionDao(ie)
     com.PermissionConvertor = inst.getPermissionConvertor(ie)
+    com.PermissionCache = inst.getPermissionCache(ie)
 
 
     return nil
@@ -543,6 +589,11 @@ func (inst*p0d13f39fa5_implservice_PermissionServiceImpl) getPermissionDao(ie ap
 
 func (inst*p0d13f39fa5_implservice_PermissionServiceImpl) getPermissionConvertor(ie application.InjectionExt)pf5d2c6fae.PermissionConvertor{
     return ie.GetComponent("#alias-f5d2c6fae036814399fa2ed06c0dc99f-PermissionConvertor").(pf5d2c6fae.PermissionConvertor)
+}
+
+
+func (inst*p0d13f39fa5_implservice_PermissionServiceImpl) getPermissionCache(ie application.InjectionExt)p2dece1e49.PermissionCache{
+    return ie.GetComponent("#alias-2dece1e495fd61b93f78009d229f38cf-PermissionCache").(p2dece1e49.PermissionCache)
 }
 
 

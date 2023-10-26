@@ -9,7 +9,7 @@ import (
 
 // PermissionEntity 表示 Permission 的数据库实体
 type PermissionEntity struct {
-	ID rbac.PermissionID
+	ID rbac.PermissionID `gorm:"primaryKey"`
 
 	BaseEntity
 

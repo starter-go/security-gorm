@@ -31,9 +31,14 @@ func (inst *PermissionDaoImpl) modelList() []*rbacdb.PermissionEntity {
 	return make([]*rbacdb.PermissionEntity, 0)
 }
 
-func (inst *PermissionDaoImpl) makeResult(ent *rbacdb.PermissionEntity, err error) (*rbacdb.PermissionEntity, error) {
+func (inst *PermissionDaoImpl) makeResult(ent *rbacdb.PermissionEntity, res *gorm.DB) (*rbacdb.PermissionEntity, error) {
+	err := res.Error
+	rows := res.RowsAffected
 	if err != nil {
 		return nil, err
+	}
+	if rows != 1 {
+		return nil, fmt.Errorf("db(result).RowsAffected  is %d", rows)
 	}
 	if ent == nil {
 		return nil, fmt.Errorf("the result entity is nil")
@@ -49,19 +54,19 @@ func (inst *PermissionDaoImpl) Insert(db *gorm.DB, o *rbacdb.PermissionEntity) (
 
 	db = inst.Agent.DB(db)
 	res := db.Create(o)
-	return inst.makeResult(o, res.Error)
+	return inst.makeResult(o, res)
 }
 
 // Update ...
 func (inst *PermissionDaoImpl) Update(db *gorm.DB, id rbac.PermissionID, updater func(*rbacdb.PermissionEntity)) (*rbacdb.PermissionEntity, error) {
 	m := inst.model()
 	db = inst.Agent.DB(db)
-	res := db.Find(m, id)
+	res := db.First(m, id)
 	if res.Error == nil {
 		updater(m)
 		res = db.Save(m)
 	}
-	return inst.makeResult(m, res.Error)
+	return inst.makeResult(m, res)
 }
 
 // Delete ...
@@ -76,14 +81,19 @@ func (inst *PermissionDaoImpl) Delete(db *gorm.DB, id rbac.PermissionID) error {
 func (inst *PermissionDaoImpl) Find(db *gorm.DB, id rbac.PermissionID) (*rbacdb.PermissionEntity, error) {
 	m := inst.model()
 	db = inst.Agent.DB(db)
-	res := db.Find(m, id)
-	return inst.makeResult(m, res.Error)
+	res := db.First(m, id)
+	return inst.makeResult(m, res)
 }
 
 // List ...
 func (inst *PermissionDaoImpl) List(db *gorm.DB, q *rbac.PermissionQuery) ([]*rbacdb.PermissionEntity, error) {
 
 	db = inst.Agent.DB(db).Model(inst.model())
+
+	// query
+	if q == nil {
+		q = &rbac.PermissionQuery{}
+	}
 
 	// page
 	page := q.Pagination

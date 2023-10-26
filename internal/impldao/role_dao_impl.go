@@ -31,9 +31,14 @@ func (inst *RoleDaoImpl) modelList() []*rbacdb.RoleEntity {
 	return make([]*rbacdb.RoleEntity, 0)
 }
 
-func (inst *RoleDaoImpl) makeResult(ent *rbacdb.RoleEntity, err error) (*rbacdb.RoleEntity, error) {
+func (inst *RoleDaoImpl) makeResult(ent *rbacdb.RoleEntity, res *gorm.DB) (*rbacdb.RoleEntity, error) {
+	err := res.Error
+	rows := res.RowsAffected
 	if err != nil {
 		return nil, err
+	}
+	if rows != 1 {
+		return nil, fmt.Errorf("db(result).RowsAffected  is %d", rows)
 	}
 	if ent == nil {
 		return nil, fmt.Errorf("the result entity is nil")
@@ -49,19 +54,19 @@ func (inst *RoleDaoImpl) Insert(db *gorm.DB, o *rbacdb.RoleEntity) (*rbacdb.Role
 
 	db = inst.Agent.DB(db)
 	res := db.Create(o)
-	return inst.makeResult(o, res.Error)
+	return inst.makeResult(o, res)
 }
 
 // Update ...
 func (inst *RoleDaoImpl) Update(db *gorm.DB, id rbac.RoleID, updater func(*rbacdb.RoleEntity)) (*rbacdb.RoleEntity, error) {
 	m := inst.model()
 	db = inst.Agent.DB(db)
-	res := db.Find(m, id)
+	res := db.First(m, id)
 	if res.Error == nil {
 		updater(m)
 		res = db.Save(m)
 	}
-	return inst.makeResult(m, res.Error)
+	return inst.makeResult(m, res)
 }
 
 // Delete ...
@@ -76,14 +81,18 @@ func (inst *RoleDaoImpl) Delete(db *gorm.DB, id rbac.RoleID) error {
 func (inst *RoleDaoImpl) Find(db *gorm.DB, id rbac.RoleID) (*rbacdb.RoleEntity, error) {
 	m := inst.model()
 	db = inst.Agent.DB(db)
-	res := db.Find(m, id)
-	return inst.makeResult(m, res.Error)
+	res := db.First(m, id)
+	return inst.makeResult(m, res)
 }
 
 // List ...
 func (inst *RoleDaoImpl) List(db *gorm.DB, q *rbac.RoleQuery) ([]*rbacdb.RoleEntity, error) {
 
 	db = inst.Agent.DB(db).Model(inst.model())
+
+	if q == nil {
+		q = &rbac.RoleQuery{}
+	}
 
 	// page
 	page := q.Pagination

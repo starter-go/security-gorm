@@ -2,8 +2,10 @@ package testcom
 
 import (
 	"context"
+	"net/http"
 
 	"github.com/starter-go/application"
+	"github.com/starter-go/security-gorm/src/test/code/testboot"
 	"github.com/starter-go/security/auth"
 	"github.com/starter-go/security/rbac"
 )
@@ -12,22 +14,18 @@ import (
 type TestAuthWithUserPassword struct {
 
 	//starter:component
-	_as func(application.Lifecycle) //starter:as(".")
+	_as func(testboot.BootingRegistry) //starter:as(".")
 
 	AC              application.Context //starter:inject("context")
 	RbacAuthService rbac.AuthService    //starter:inject("#")
 
-	Enabled bool //starter:inject("${testcase.enable.auth-with-password}")
-
 }
 
-// Life ...
-func (inst *TestAuthWithUserPassword) Life() *application.Life {
-	l := &application.Life{}
-	if inst.Enabled {
-		l.OnLoop = inst.run
-	}
-	return l
+// Boots ...
+func (inst *TestAuthWithUserPassword) Boots() []*testboot.Boot {
+	bl := testboot.BootList{}
+	bl.Handle(http.MethodGet, "/api//", inst.run)
+	return bl.List()
 }
 
 func (inst *TestAuthWithUserPassword) run() error {

@@ -10,7 +10,7 @@ import (
 
 // UserEntity 表示 User 的数据库实体
 type UserEntity struct {
-	ID rbac.UserID
+	ID rbac.UserID `gorm:"primaryKey"`
 
 	BaseEntity
 

@@ -31,6 +31,9 @@ func (inst*autoRegistrar) addAll() error {
 
     
     inst.register(&pe31a5ae465_testcom_Bootstrap{})
+    inst.register(&pe31a5ae465_testcom_TestAdminPermissions{})
+    inst.register(&pe31a5ae465_testcom_TestAdminRoles{})
+    inst.register(&pe31a5ae465_testcom_TestAdminUsers{})
     inst.register(&pe31a5ae465_testcom_TestAuthWithEmail{})
     inst.register(&pe31a5ae465_testcom_TestAuthWithSMS{})
     inst.register(&pe31a5ae465_testcom_TestAuthWithUserPassword{})

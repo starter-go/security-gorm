@@ -1,18 +1,41 @@
 package testboot
 
-import (
-	"os"
-
-	"github.com/starter-go/security-gorm/modules/securitygormtest"
-	"github.com/starter-go/security-gorm/src/test/code/testcom"
-
-	"github.com/starter-go/starter"
-)
+////////////////////////////////////////////////////////////////////////////////
 
 // Boot ...
-func Boot(p *testcom.BootParams) {
-	i := starter.Init(os.Args)
-	i.GetAttributes().SetAttribute(testcom.AttrKeyBootParams, p)
-	i.MainModule(securitygormtest.ModuleForTest())
-	i.WithPanic(true).Run()
+type Boot struct {
+	Method  string
+	Path    string
+	Handler func() error
 }
+
+////////////////////////////////////////////////////////////////////////////////
+
+// BootingRegistry ...
+type BootingRegistry interface {
+	Boots() []*Boot
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+// BootList ...
+type BootList struct {
+	items []*Boot
+}
+
+// Handle ...
+func (inst *BootList) Handle(method string, path string, h func() error) {
+	b := &Boot{
+		Method:  method,
+		Path:    path,
+		Handler: h,
+	}
+	inst.items = append(inst.items, b)
+}
+
+// List ...
+func (inst *BootList) List() []*Boot {
+	return inst.items
+}
+
+////////////////////////////////////////////////////////////////////////////////

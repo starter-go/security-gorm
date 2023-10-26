@@ -9,7 +9,7 @@ import (
 
 // EmailAddressEntity ...
 type EmailAddressEntity struct {
-	ID rbac.EmailAddressID
+	ID rbac.EmailAddressID `gorm:"primaryKey"`
 
 	BaseEntity
 

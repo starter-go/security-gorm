@@ -1,6 +1,7 @@
 package gen4securitygormtest
 import (
     p0ef6f2938 "github.com/starter-go/application"
+    p1e87d3502 "github.com/starter-go/security-gorm/src/test/code/testboot"
     pe31a5ae46 "github.com/starter-go/security-gorm/src/test/code/testcom"
     p2dece1e49 "github.com/starter-go/security/rbac"
      "github.com/starter-go/application"
@@ -38,7 +39,9 @@ func (inst* pe31a5ae465_testcom_Bootstrap) inject(injext application.InjectionEx
 
 	
     com.AC = inst.getAC(ie)
-    com.RbacAuthService = inst.getRbacAuthService(ie)
+    com.Boots = inst.getBoots(ie)
+    com.Method = inst.getMethod(ie)
+    com.Path = inst.getPath(ie)
 
 
     return nil
@@ -50,8 +53,174 @@ func (inst*pe31a5ae465_testcom_Bootstrap) getAC(ie application.InjectionExt)p0ef
 }
 
 
-func (inst*pe31a5ae465_testcom_Bootstrap) getRbacAuthService(ie application.InjectionExt)p2dece1e49.AuthService{
-    return ie.GetComponent("#alias-2dece1e495fd61b93f78009d229f38cf-AuthService").(p2dece1e49.AuthService)
+func (inst*pe31a5ae465_testcom_Bootstrap) getBoots(ie application.InjectionExt)[]p1e87d3502.BootingRegistry{
+    dst := make([]p1e87d3502.BootingRegistry, 0)
+    src := ie.ListComponents(".class-1e87d3502ef943fef29a9cd86b5df9dc-BootingRegistry")
+    for _, item1 := range src {
+        item2 := item1.(p1e87d3502.BootingRegistry)
+        dst = append(dst, item2)
+    }
+    return dst
+}
+
+
+func (inst*pe31a5ae465_testcom_Bootstrap) getMethod(ie application.InjectionExt)string{
+    return ie.GetString("${test.boot.method}")
+}
+
+
+func (inst*pe31a5ae465_testcom_Bootstrap) getPath(ie application.InjectionExt)string{
+    return ie.GetString("${test.boot.path}")
+}
+
+
+
+// type pe31a5ae46.TestAdminPermissions in package:github.com/starter-go/security-gorm/src/test/code/testcom
+//
+// id:com-e31a5ae465e830bc-testcom-TestAdminPermissions
+// class:class-1e87d3502ef943fef29a9cd86b5df9dc-BootingRegistry
+// alias:
+// scope:singleton
+//
+type pe31a5ae465_testcom_TestAdminPermissions struct {
+}
+
+func (inst* pe31a5ae465_testcom_TestAdminPermissions) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-e31a5ae465e830bc-testcom-TestAdminPermissions"
+	r.Classes = "class-1e87d3502ef943fef29a9cd86b5df9dc-BootingRegistry"
+	r.Aliases = ""
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* pe31a5ae465_testcom_TestAdminPermissions) new() any {
+    return &pe31a5ae46.TestAdminPermissions{}
+}
+
+func (inst* pe31a5ae465_testcom_TestAdminPermissions) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*pe31a5ae46.TestAdminPermissions)
+	nop(ie, com)
+
+	
+    com.AC = inst.getAC(ie)
+    com.Permissionservice = inst.getPermissionservice(ie)
+
+
+    return nil
+}
+
+
+func (inst*pe31a5ae465_testcom_TestAdminPermissions) getAC(ie application.InjectionExt)p0ef6f2938.Context{
+    return ie.GetContext()
+}
+
+
+func (inst*pe31a5ae465_testcom_TestAdminPermissions) getPermissionservice(ie application.InjectionExt)p2dece1e49.PermissionService{
+    return ie.GetComponent("#alias-2dece1e495fd61b93f78009d229f38cf-PermissionService").(p2dece1e49.PermissionService)
+}
+
+
+
+// type pe31a5ae46.TestAdminRoles in package:github.com/starter-go/security-gorm/src/test/code/testcom
+//
+// id:com-e31a5ae465e830bc-testcom-TestAdminRoles
+// class:class-1e87d3502ef943fef29a9cd86b5df9dc-BootingRegistry
+// alias:
+// scope:singleton
+//
+type pe31a5ae465_testcom_TestAdminRoles struct {
+}
+
+func (inst* pe31a5ae465_testcom_TestAdminRoles) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-e31a5ae465e830bc-testcom-TestAdminRoles"
+	r.Classes = "class-1e87d3502ef943fef29a9cd86b5df9dc-BootingRegistry"
+	r.Aliases = ""
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* pe31a5ae465_testcom_TestAdminRoles) new() any {
+    return &pe31a5ae46.TestAdminRoles{}
+}
+
+func (inst* pe31a5ae465_testcom_TestAdminRoles) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*pe31a5ae46.TestAdminRoles)
+	nop(ie, com)
+
+	
+    com.AC = inst.getAC(ie)
+    com.RoleService = inst.getRoleService(ie)
+
+
+    return nil
+}
+
+
+func (inst*pe31a5ae465_testcom_TestAdminRoles) getAC(ie application.InjectionExt)p0ef6f2938.Context{
+    return ie.GetContext()
+}
+
+
+func (inst*pe31a5ae465_testcom_TestAdminRoles) getRoleService(ie application.InjectionExt)p2dece1e49.RoleService{
+    return ie.GetComponent("#alias-2dece1e495fd61b93f78009d229f38cf-RoleService").(p2dece1e49.RoleService)
+}
+
+
+
+// type pe31a5ae46.TestAdminUsers in package:github.com/starter-go/security-gorm/src/test/code/testcom
+//
+// id:com-e31a5ae465e830bc-testcom-TestAdminUsers
+// class:class-1e87d3502ef943fef29a9cd86b5df9dc-BootingRegistry
+// alias:
+// scope:singleton
+//
+type pe31a5ae465_testcom_TestAdminUsers struct {
+}
+
+func (inst* pe31a5ae465_testcom_TestAdminUsers) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-e31a5ae465e830bc-testcom-TestAdminUsers"
+	r.Classes = "class-1e87d3502ef943fef29a9cd86b5df9dc-BootingRegistry"
+	r.Aliases = ""
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* pe31a5ae465_testcom_TestAdminUsers) new() any {
+    return &pe31a5ae46.TestAdminUsers{}
+}
+
+func (inst* pe31a5ae465_testcom_TestAdminUsers) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*pe31a5ae46.TestAdminUsers)
+	nop(ie, com)
+
+	
+    com.AC = inst.getAC(ie)
+    com.Userservice = inst.getUserservice(ie)
+
+
+    return nil
+}
+
+
+func (inst*pe31a5ae465_testcom_TestAdminUsers) getAC(ie application.InjectionExt)p0ef6f2938.Context{
+    return ie.GetContext()
+}
+
+
+func (inst*pe31a5ae465_testcom_TestAdminUsers) getUserservice(ie application.InjectionExt)p2dece1e49.UserService{
+    return ie.GetComponent("#alias-2dece1e495fd61b93f78009d229f38cf-UserService").(p2dece1e49.UserService)
 }
 
 
@@ -147,7 +316,7 @@ func (inst*pe31a5ae465_testcom_TestAuthWithSMS) getAC(ie application.InjectionEx
 // type pe31a5ae46.TestAuthWithUserPassword in package:github.com/starter-go/security-gorm/src/test/code/testcom
 //
 // id:com-e31a5ae465e830bc-testcom-TestAuthWithUserPassword
-// class:class-0ef6f2938681e99da4b0c19ce3d3fb4f-Lifecycle
+// class:class-1e87d3502ef943fef29a9cd86b5df9dc-BootingRegistry
 // alias:
 // scope:singleton
 //
@@ -157,7 +326,7 @@ type pe31a5ae465_testcom_TestAuthWithUserPassword struct {
 func (inst* pe31a5ae465_testcom_TestAuthWithUserPassword) register(cr application.ComponentRegistry) error {
 	r := cr.NewRegistration()
 	r.ID = "com-e31a5ae465e830bc-testcom-TestAuthWithUserPassword"
-	r.Classes = "class-0ef6f2938681e99da4b0c19ce3d3fb4f-Lifecycle"
+	r.Classes = "class-1e87d3502ef943fef29a9cd86b5df9dc-BootingRegistry"
 	r.Aliases = ""
 	r.Scope = "singleton"
 	r.NewFunc = inst.new
@@ -177,7 +346,6 @@ func (inst* pe31a5ae465_testcom_TestAuthWithUserPassword) inject(injext applicat
 	
     com.AC = inst.getAC(ie)
     com.RbacAuthService = inst.getRbacAuthService(ie)
-    com.Enabled = inst.getEnabled(ie)
 
 
     return nil
@@ -191,11 +359,6 @@ func (inst*pe31a5ae465_testcom_TestAuthWithUserPassword) getAC(ie application.In
 
 func (inst*pe31a5ae465_testcom_TestAuthWithUserPassword) getRbacAuthService(ie application.InjectionExt)p2dece1e49.AuthService{
     return ie.GetComponent("#alias-2dece1e495fd61b93f78009d229f38cf-AuthService").(p2dece1e49.AuthService)
-}
-
-
-func (inst*pe31a5ae465_testcom_TestAuthWithUserPassword) getEnabled(ie application.InjectionExt)bool{
-    return ie.GetBool("${testcase.enable.auth-with-password}")
 }
 
 

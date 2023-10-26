@@ -35,9 +35,14 @@ func (inst *UserDaoImpl) modelList() []*rbacdb.UserEntity {
 	return make([]*rbacdb.UserEntity, 0)
 }
 
-func (inst *UserDaoImpl) makeResult(ent *rbacdb.UserEntity, err error) (*rbacdb.UserEntity, error) {
+func (inst *UserDaoImpl) makeResult(ent *rbacdb.UserEntity, res *gorm.DB) (*rbacdb.UserEntity, error) {
+	err := res.Error
+	rows := res.RowsAffected
 	if err != nil {
 		return nil, err
+	}
+	if rows != 1 {
+		return nil, fmt.Errorf("db(result).RowsAffected  is %d", rows)
 	}
 	if ent == nil {
 		return nil, fmt.Errorf("the result entity is nil")
@@ -53,19 +58,19 @@ func (inst *UserDaoImpl) Insert(db *gorm.DB, o *rbacdb.UserEntity) (*rbacdb.User
 
 	db = inst.Agent.DB(db)
 	res := db.Create(o)
-	return inst.makeResult(o, res.Error)
+	return inst.makeResult(o, res)
 }
 
 // Update ...
 func (inst *UserDaoImpl) Update(db *gorm.DB, id rbac.UserID, updater func(*rbacdb.UserEntity)) (*rbacdb.UserEntity, error) {
 	m := inst.model()
 	db = inst.Agent.DB(db)
-	res := db.Find(m, id)
+	res := db.First(m, id)
 	if res.Error == nil {
 		updater(m)
 		res = db.Save(m)
 	}
-	return inst.makeResult(m, res.Error)
+	return inst.makeResult(m, res)
 }
 
 // Delete ...
@@ -80,14 +85,21 @@ func (inst *UserDaoImpl) Delete(db *gorm.DB, id rbac.UserID) error {
 func (inst *UserDaoImpl) Find(db *gorm.DB, id rbac.UserID) (*rbacdb.UserEntity, error) {
 	m := inst.model()
 	db = inst.Agent.DB(db)
-	res := db.Find(m, id)
-	return inst.makeResult(m, res.Error)
+	res := db.First(m, id)
+	return inst.makeResult(m, res)
 }
 
 // List ...
 func (inst *UserDaoImpl) List(db *gorm.DB, q *rbac.UserQuery) ([]*rbacdb.UserEntity, error) {
 
 	db = inst.Agent.DB(db).Model(inst.model())
+
+	// query
+	if q == nil {
+		q = &rbac.UserQuery{}
+		q.Pagination.Size = 10
+		q.Pagination.Page = 1
+	}
 
 	// page
 	page := q.Pagination
@@ -143,7 +155,7 @@ func (inst *UserDaoImpl) FindByName(db *gorm.DB, name rbac.UserName) (*rbacdb.Us
 	mo := inst.model()
 	db = inst.Agent.DB(db)
 	res := db.Where("name = ?", name).First(mo)
-	return inst.makeResult(mo, res.Error)
+	return inst.makeResult(mo, res)
 }
 
 // FindByPhone ...

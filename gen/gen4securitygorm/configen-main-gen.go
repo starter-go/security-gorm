@@ -33,6 +33,7 @@ func (inst*autoRegistrar) addAll() error {
     inst.register(&p047c6784c4_implconvertor_PermissionConvertorImpl{})
     inst.register(&p047c6784c4_implconvertor_RoleConvertorImpl{})
     inst.register(&p047c6784c4_implconvertor_UserConvertorImpl{})
+    inst.register(&p0d13f39fa5_implservice_PermissionCacheImpl{})
     inst.register(&p0d13f39fa5_implservice_PermissionServiceImpl{})
     inst.register(&p0d13f39fa5_implservice_RoleServiceImpl{})
     inst.register(&p0d13f39fa5_implservice_UserServiceImpl{})
