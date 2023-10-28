@@ -38,7 +38,8 @@ func (inst *RoleServiceImpl) Insert(c context.Context, o *rbac.RoleDTO) (*rbac.R
 func (inst *RoleServiceImpl) Update(c context.Context, id rbac.RoleID, o *rbac.RoleDTO) (*rbac.RoleDTO, error) {
 	o3, err := inst.RoleDao.Update(nil, id, func(ent *rbacdb.RoleEntity) {
 		// todo ...
-		ent.Name = o.Name
+		// ent.Name = o.Name  // 不支持改名
+		ent.Description = o.Description
 	})
 	if err != nil {
 		return nil, err

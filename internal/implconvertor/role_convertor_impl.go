@@ -2,6 +2,7 @@ package implconvertor
 
 import (
 	"context"
+	"strings"
 
 	"github.com/starter-go/security-gorm/rbacdb"
 	"github.com/starter-go/security/rbac"
@@ -23,15 +24,22 @@ func (inst *RoleConvertorImpl) ConvertE2D(c context.Context, o1 *rbacdb.RoleEnti
 	rbacdb.CopyBaseFieldsFromEntityToDTO(&o1.BaseEntity, &o2.BaseDTO)
 	o2.ID = o1.ID
 	o2.Name = o1.Name
+	o2.Description = o1.Description
 	return o2, nil
 }
 
 // ConvertD2E ...
 func (inst *RoleConvertorImpl) ConvertD2E(c context.Context, o1 *rbac.RoleDTO) (*rbacdb.RoleEntity, error) {
+
+	name := o1.Name.String()
+	name = strings.TrimSpace(name)
+	name = strings.ToLower(name)
+
 	o2 := &rbacdb.RoleEntity{}
 	rbacdb.CopyBaseFieldsFromDtoToEntity(&o1.BaseDTO, &o2.BaseEntity)
 	o2.ID = o1.ID
-	o2.Name = o1.Name
+	o2.Name = rbac.RoleName(name)
+	o2.Description = o1.Description
 	return o2, nil
 }
 

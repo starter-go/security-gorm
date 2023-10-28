@@ -13,7 +13,8 @@ type RoleEntity struct {
 
 	BaseEntity
 
-	Name rbac.RoleName `gorm:"unique"`
+	Name        rbac.RoleName `gorm:"unique"`
+	Description string
 }
 
 // RoleDAO 是数据库访问对象
