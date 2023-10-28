@@ -32,6 +32,7 @@ func (inst *PermissionConvertorImpl) ConvertE2D(c context.Context, o1 *rbacdb.Pe
 	o2.Method = o1.Method
 	o2.Path = o1.Path
 	o2.AcceptRoles = o1.AcceptRoles
+	o2.Enabled = o1.Enabled
 	return o2, nil
 }
 
@@ -40,9 +41,10 @@ func (inst *PermissionConvertorImpl) ConvertD2E(c context.Context, o1 *rbac.Perm
 	o2 := &rbacdb.PermissionEntity{}
 	rbacdb.CopyBaseFieldsFromDtoToEntity(&o1.BaseDTO, &o2.BaseEntity)
 	o2.ID = o1.ID
-	o2.Method = o1.Method
+	o2.Method = strings.ToUpper(o1.Method)
 	o2.Path = o1.Path
-	o2.AcceptRoles = o1.AcceptRoles
+	o2.AcceptRoles = o1.AcceptRoles.Normalize()
+	o2.Enabled = o1.Enabled
 	inst.computeResourceString(o2)
 	return o2, nil
 }

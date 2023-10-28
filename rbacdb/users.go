@@ -21,6 +21,7 @@ type UserEntity struct {
 	Phone    rbac.PhoneNumberID  // 主要的手机号
 	Email    rbac.EmailAddressID // 主要的 e-mail 地址
 	Roles    rbac.RoleNameList   // 用户的角色
+	Enabled  bool                // 启用该项
 
 	Password lang.Hex // 用户当前的密码
 	Salt     lang.Hex // 跟密码相关的盐

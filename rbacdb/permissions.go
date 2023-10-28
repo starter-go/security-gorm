@@ -17,6 +17,8 @@ type PermissionEntity struct {
 	Path        string
 	Resource    string            `gorm:"unique"` // like 'method + ":" + path'
 	AcceptRoles rbac.RoleNameList `gorm:"column:roles"`
+	Enabled     bool              // 启用该项
+
 }
 
 // PermissionDAO 是数据库访问对象

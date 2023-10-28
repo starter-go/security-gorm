@@ -26,6 +26,7 @@ func (inst *UserConvertorImpl) ConvertE2D(c context.Context, o1 *rbacdb.UserEnti
 	o2.Name = o1.Name
 	o2.NickName = o1.Nickname
 	o2.Roles = o1.Roles
+	o2.Enabled = o1.Enabled
 	return o2, nil
 }
 
@@ -37,7 +38,8 @@ func (inst *UserConvertorImpl) ConvertD2E(c context.Context, o1 *rbac.UserDTO) (
 	o2.Avatar = o1.Avatar
 	o2.Name = o1.Name
 	o2.Nickname = o1.NickName
-	o2.Roles = o1.Roles
+	o2.Roles = o1.Roles.Normalize()
+	o2.Enabled = o1.Enabled
 	return o2, nil
 }
 
