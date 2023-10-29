@@ -88,7 +88,7 @@ func (inst *PermissionDaoImpl) Find(db *gorm.DB, id rbac.PermissionID) (*rbacdb.
 // List ...
 func (inst *PermissionDaoImpl) List(db *gorm.DB, q *rbac.PermissionQuery) ([]*rbacdb.PermissionEntity, error) {
 
-	db = inst.Agent.DB(db).Model(inst.model())
+	db = inst.Agent.DB(db)
 
 	// query
 	if q == nil {
@@ -100,12 +100,11 @@ func (inst *PermissionDaoImpl) List(db *gorm.DB, q *rbac.PermissionQuery) ([]*rb
 	if page.Size > 0 {
 
 		var cnt int64
-		db.Count(&cnt)
+		db.Model(inst.model()).Count(&cnt)
+		q.Pagination.Total = cnt
 
 		db = db.Offset(int(page.Offset()))
 		db = db.Limit(int(page.Limit()))
-
-		q.Pagination.Total = cnt
 	}
 
 	// find
