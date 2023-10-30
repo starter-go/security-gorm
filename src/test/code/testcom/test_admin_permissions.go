@@ -4,8 +4,10 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"strconv"
 
 	"github.com/starter-go/application"
+	"github.com/starter-go/base/lang"
 	"github.com/starter-go/security-gorm/src/test/code/testboot"
 	"github.com/starter-go/security/rbac"
 	"github.com/starter-go/vlog"
@@ -35,10 +37,12 @@ func (inst *TestAdminPermissions) Boots() []*testboot.Boot {
 }
 
 func (inst *TestAdminPermissions) doTestInsert() error {
+	now := lang.Now()
+	stamp := strconv.FormatInt(now.Int(), 10)
 	ctx := inst.AC
 	o1 := &rbac.PermissionDTO{
 		Method: http.MethodOptions,
-		Path:   "/test/666",
+		Path:   "/test/666/" + stamp,
 	}
 	o2, err := inst.Permissionservice.Insert(ctx, o1)
 	if err != nil {
@@ -79,8 +83,13 @@ func (inst *TestAdminPermissions) doTestGetList() error {
 
 	ctx := inst.AC
 	ser := inst.Permissionservice
+	query := &rbac.PermissionQuery{}
+	query.Pagination.Size = 3
+	query.Pagination.Page = 1
+	query.Conditions.Query = "creator = ?"
+	query.Conditions.Args = []string{"6"}
 
-	list, err := ser.List(ctx, nil)
+	list, err := ser.List(ctx, query)
 	if err != nil {
 		return err
 	}

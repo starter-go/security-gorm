@@ -9,29 +9,29 @@ import (
 	"gorm.io/gorm"
 )
 
-// PermissionDaoImpl ...
-type PermissionDaoImpl struct {
+// RegionDaoImpl ...
+type RegionDaoImpl struct {
 
 	//starter:component
-	_as func(rbacdb.PermissionDAO) //starter:as("#")
+	_as func(rbacdb.RegionDAO) //starter:as("#")
 
 	Agent       rbacdb.LocalAgent  //starter:inject("#")
 	UUIDService random.UUIDService //starter:inject("#")
 }
 
-func (inst *PermissionDaoImpl) _impl(a rbacdb.PermissionDAO) {
+func (inst *RegionDaoImpl) _impl(a rbacdb.RegionDAO) {
 	a = inst
 }
 
-func (inst *PermissionDaoImpl) model() *rbacdb.PermissionEntity {
-	return &rbacdb.PermissionEntity{}
+func (inst *RegionDaoImpl) model() *rbacdb.RegionEntity {
+	return &rbacdb.RegionEntity{}
 }
 
-func (inst *PermissionDaoImpl) modelList() []*rbacdb.PermissionEntity {
-	return make([]*rbacdb.PermissionEntity, 0)
+func (inst *RegionDaoImpl) modelList() []*rbacdb.RegionEntity {
+	return make([]*rbacdb.RegionEntity, 0)
 }
 
-func (inst *PermissionDaoImpl) makeResult(ent *rbacdb.PermissionEntity, res *gorm.DB) (*rbacdb.PermissionEntity, error) {
+func (inst *RegionDaoImpl) makeResult(ent *rbacdb.RegionEntity, res *gorm.DB) (*rbacdb.RegionEntity, error) {
 	err := res.Error
 	rows := res.RowsAffected
 	if err != nil {
@@ -47,10 +47,10 @@ func (inst *PermissionDaoImpl) makeResult(ent *rbacdb.PermissionEntity, res *gor
 }
 
 // Insert ...
-func (inst *PermissionDaoImpl) Insert(db *gorm.DB, o *rbacdb.PermissionEntity) (*rbacdb.PermissionEntity, error) {
+func (inst *RegionDaoImpl) Insert(db *gorm.DB, o *rbacdb.RegionEntity) (*rbacdb.RegionEntity, error) {
 
 	o.ID = 0
-	o.UUID = inst.UUIDService.Build().Class("rbacdb.PermissionEntity").Generate()
+	o.UUID = inst.UUIDService.Build().Class("rbacdb.RegionEntity").Generate()
 
 	db = inst.Agent.DB(db)
 	res := db.Create(o)
@@ -58,7 +58,7 @@ func (inst *PermissionDaoImpl) Insert(db *gorm.DB, o *rbacdb.PermissionEntity) (
 }
 
 // Update ...
-func (inst *PermissionDaoImpl) Update(db *gorm.DB, id rbac.PermissionID, updater func(*rbacdb.PermissionEntity)) (*rbacdb.PermissionEntity, error) {
+func (inst *RegionDaoImpl) Update(db *gorm.DB, id rbac.RegionID, updater func(*rbacdb.RegionEntity)) (*rbacdb.RegionEntity, error) {
 	m := inst.model()
 	db = inst.Agent.DB(db)
 	res := db.First(m, id)
@@ -70,7 +70,7 @@ func (inst *PermissionDaoImpl) Update(db *gorm.DB, id rbac.PermissionID, updater
 }
 
 // Delete ...
-func (inst *PermissionDaoImpl) Delete(db *gorm.DB, id rbac.PermissionID) error {
+func (inst *RegionDaoImpl) Delete(db *gorm.DB, id rbac.RegionID) error {
 	m := inst.model()
 	db = inst.Agent.DB(db)
 	res := db.Delete(m, id)
@@ -78,7 +78,7 @@ func (inst *PermissionDaoImpl) Delete(db *gorm.DB, id rbac.PermissionID) error {
 }
 
 // Find ...
-func (inst *PermissionDaoImpl) Find(db *gorm.DB, id rbac.PermissionID) (*rbacdb.PermissionEntity, error) {
+func (inst *RegionDaoImpl) Find(db *gorm.DB, id rbac.RegionID) (*rbacdb.RegionEntity, error) {
 	m := inst.model()
 	db = inst.Agent.DB(db)
 	res := db.First(m, id)
@@ -86,10 +86,10 @@ func (inst *PermissionDaoImpl) Find(db *gorm.DB, id rbac.PermissionID) (*rbacdb.
 }
 
 // List ...
-func (inst *PermissionDaoImpl) List(db *gorm.DB, q *rbac.PermissionQuery) ([]*rbacdb.PermissionEntity, error) {
+func (inst *RegionDaoImpl) List(db *gorm.DB, q *rbac.RegionQuery) ([]*rbacdb.RegionEntity, error) {
 
 	if q == nil {
-		q = &rbac.PermissionQuery{}
+		q = &rbac.RegionQuery{}
 	}
 	list := inst.modelList()
 	item := inst.model()
@@ -109,8 +109,8 @@ func (inst *PermissionDaoImpl) List(db *gorm.DB, q *rbac.PermissionQuery) ([]*rb
 }
 
 // ListAll ...
-func (inst *PermissionDaoImpl) ListAll(db *gorm.DB) ([]*rbacdb.PermissionEntity, error) {
-	db = inst.Agent.DB(db).Model(inst.model())
+func (inst *RegionDaoImpl) ListAll(db *gorm.DB) ([]*rbacdb.RegionEntity, error) {
+	db = inst.Agent.DB(db)
 	list := inst.modelList()
 	res := db.Find(&list)
 	if res.Error != nil {

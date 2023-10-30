@@ -13,6 +13,7 @@ func entities() []any {
 	list = append(list, &UserEntity{})
 	list = append(list, &EmailAddressEntity{})
 	list = append(list, &PhoneNumberEntity{})
+	list = append(list, &RegionEntity{})
 	return list
 }
 
@@ -41,4 +42,9 @@ func (EmailAddressEntity) TableName() string {
 // TableName ...
 func (PhoneNumberEntity) TableName() string {
 	return theTableNamePrefix + "phone_numbers"
+}
+
+// TableName ...
+func (RegionEntity) TableName() string {
+	return theTableNamePrefix + "regions"
 }

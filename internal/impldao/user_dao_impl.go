@@ -92,33 +92,22 @@ func (inst *UserDaoImpl) Find(db *gorm.DB, id rbac.UserID) (*rbacdb.UserEntity, 
 // List ...
 func (inst *UserDaoImpl) List(db *gorm.DB, q *rbac.UserQuery) ([]*rbacdb.UserEntity, error) {
 
-	db = inst.Agent.DB(db).Model(inst.model())
-
-	// query
 	if q == nil {
 		q = &rbac.UserQuery{}
-		q.Pagination.Size = 10
-		q.Pagination.Page = 1
 	}
-
-	// page
-	page := q.Pagination
-	if page.Size > 0 {
-
-		var cnt int64
-		db.Count(&cnt)
-
-		db = db.Offset(int(page.Offset()))
-		db = db.Limit(int(page.Limit()))
-
-		q.Pagination.Total = cnt
-	}
-
-	// find
 	list := inst.modelList()
-	res := db.Find(&list)
-	if res.Error != nil {
-		return nil, res.Error
+	item := inst.model()
+
+	f := finder{}
+	f.listModel = &list
+	f.itemModel = item
+	f.page = &q.Pagination
+	f.conditions = &q.Conditions
+	f.db = inst.Agent.DB(db)
+
+	err := f.find()
+	if err != nil {
+		return nil, err
 	}
 	return list, nil
 }

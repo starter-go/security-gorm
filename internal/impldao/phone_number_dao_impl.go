@@ -91,26 +91,22 @@ func (inst *PhoneNumberDaoImpl) FindByNumber(db *gorm.DB, num rbac.FullPhoneNumb
 // List ...
 func (inst *PhoneNumberDaoImpl) List(db *gorm.DB, q *rbac.PhoneNumberQuery) ([]*rbacdb.PhoneNumberEntity, error) {
 
-	db = inst.Agent.DB(db).Model(inst.model())
-
-	// page
-	page := q.Pagination
-	if page.Size > 0 {
-
-		var cnt int64
-		db.Count(&cnt)
-
-		db = db.Offset(int(page.Offset()))
-		db = db.Limit(int(page.Limit()))
-
-		q.Pagination.Total = cnt
+	if q == nil {
+		q = &rbac.PhoneNumberQuery{}
 	}
-
-	// find
 	list := inst.modelList()
-	res := db.Find(&list)
-	if res.Error != nil {
-		return nil, res.Error
+	item := inst.model()
+
+	f := finder{}
+	f.listModel = &list
+	f.itemModel = item
+	f.page = &q.Pagination
+	f.conditions = &q.Conditions
+	f.db = inst.Agent.DB(db)
+
+	err := f.find()
+	if err != nil {
+		return nil, err
 	}
 	return list, nil
 }
