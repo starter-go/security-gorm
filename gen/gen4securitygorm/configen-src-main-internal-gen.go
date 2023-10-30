@@ -160,6 +160,44 @@ func (inst* p047c6784c4_implconvertor_PermissionConvertorImpl) inject(injext app
 
 
 
+// type p047c6784c.RegionConvertorImpl in package:github.com/starter-go/security-gorm/internal/implconvertor
+//
+// id:com-047c6784c4625f2a-implconvertor-RegionConvertorImpl
+// class:
+// alias:alias-f5d2c6fae036814399fa2ed06c0dc99f-RegionConvertor
+// scope:singleton
+//
+type p047c6784c4_implconvertor_RegionConvertorImpl struct {
+}
+
+func (inst* p047c6784c4_implconvertor_RegionConvertorImpl) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-047c6784c4625f2a-implconvertor-RegionConvertorImpl"
+	r.Classes = ""
+	r.Aliases = "alias-f5d2c6fae036814399fa2ed06c0dc99f-RegionConvertor"
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* p047c6784c4_implconvertor_RegionConvertorImpl) new() any {
+    return &p047c6784c.RegionConvertorImpl{}
+}
+
+func (inst* p047c6784c4_implconvertor_RegionConvertorImpl) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*p047c6784c.RegionConvertorImpl)
+	nop(ie, com)
+
+	
+
+
+    return nil
+}
+
+
+
 // type p047c6784c.RoleConvertorImpl in package:github.com/starter-go/security-gorm/internal/implconvertor
 //
 // id:com-047c6784c4625f2a-implconvertor-RoleConvertorImpl
@@ -386,6 +424,56 @@ func (inst*p8617045c5b_impldao_PhoneNumberDaoImpl) getUUIDService(ie application
 
 
 
+// type p8617045c5.RegionDaoImpl in package:github.com/starter-go/security-gorm/internal/impldao
+//
+// id:com-8617045c5b2ce8e3-impldao-RegionDaoImpl
+// class:
+// alias:alias-f5d2c6fae036814399fa2ed06c0dc99f-RegionDAO
+// scope:singleton
+//
+type p8617045c5b_impldao_RegionDaoImpl struct {
+}
+
+func (inst* p8617045c5b_impldao_RegionDaoImpl) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-8617045c5b2ce8e3-impldao-RegionDaoImpl"
+	r.Classes = ""
+	r.Aliases = "alias-f5d2c6fae036814399fa2ed06c0dc99f-RegionDAO"
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* p8617045c5b_impldao_RegionDaoImpl) new() any {
+    return &p8617045c5.RegionDaoImpl{}
+}
+
+func (inst* p8617045c5b_impldao_RegionDaoImpl) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*p8617045c5.RegionDaoImpl)
+	nop(ie, com)
+
+	
+    com.Agent = inst.getAgent(ie)
+    com.UUIDService = inst.getUUIDService(ie)
+
+
+    return nil
+}
+
+
+func (inst*p8617045c5b_impldao_RegionDaoImpl) getAgent(ie application.InjectionExt)pf5d2c6fae.LocalAgent{
+    return ie.GetComponent("#alias-f5d2c6fae036814399fa2ed06c0dc99f-LocalAgent").(pf5d2c6fae.LocalAgent)
+}
+
+
+func (inst*p8617045c5b_impldao_RegionDaoImpl) getUUIDService(ie application.InjectionExt)p9621e8b71.UUIDService{
+    return ie.GetComponent("#alias-9621e8b71013b0fc25942a1749ed3652-UUIDService").(p9621e8b71.UUIDService)
+}
+
+
+
 // type p8617045c5.RoleDaoImpl in package:github.com/starter-go/security-gorm/internal/impldao
 //
 // id:com-8617045c5b2ce8e3-impldao-RoleDaoImpl
@@ -594,6 +682,56 @@ func (inst*p0d13f39fa5_implservice_PermissionServiceImpl) getPermissionConvertor
 
 func (inst*p0d13f39fa5_implservice_PermissionServiceImpl) getPermissionCache(ie application.InjectionExt)p2dece1e49.PermissionCache{
     return ie.GetComponent("#alias-2dece1e495fd61b93f78009d229f38cf-PermissionCache").(p2dece1e49.PermissionCache)
+}
+
+
+
+// type p0d13f39fa.RegionServiceImpl in package:github.com/starter-go/security-gorm/internal/implservice
+//
+// id:com-0d13f39fa52fea3f-implservice-RegionServiceImpl
+// class:
+// alias:alias-2dece1e495fd61b93f78009d229f38cf-RegionService
+// scope:singleton
+//
+type p0d13f39fa5_implservice_RegionServiceImpl struct {
+}
+
+func (inst* p0d13f39fa5_implservice_RegionServiceImpl) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-0d13f39fa52fea3f-implservice-RegionServiceImpl"
+	r.Classes = ""
+	r.Aliases = "alias-2dece1e495fd61b93f78009d229f38cf-RegionService"
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* p0d13f39fa5_implservice_RegionServiceImpl) new() any {
+    return &p0d13f39fa.RegionServiceImpl{}
+}
+
+func (inst* p0d13f39fa5_implservice_RegionServiceImpl) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*p0d13f39fa.RegionServiceImpl)
+	nop(ie, com)
+
+	
+    com.RegionDao = inst.getRegionDao(ie)
+    com.RegionConvertor = inst.getRegionConvertor(ie)
+
+
+    return nil
+}
+
+
+func (inst*p0d13f39fa5_implservice_RegionServiceImpl) getRegionDao(ie application.InjectionExt)pf5d2c6fae.RegionDAO{
+    return ie.GetComponent("#alias-f5d2c6fae036814399fa2ed06c0dc99f-RegionDAO").(pf5d2c6fae.RegionDAO)
+}
+
+
+func (inst*p0d13f39fa5_implservice_RegionServiceImpl) getRegionConvertor(ie application.InjectionExt)pf5d2c6fae.RegionConvertor{
+    return ie.GetComponent("#alias-f5d2c6fae036814399fa2ed06c0dc99f-RegionConvertor").(pf5d2c6fae.RegionConvertor)
 }
 
 
