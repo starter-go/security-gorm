@@ -2,6 +2,7 @@ package implconvertor
 
 import (
 	"context"
+	"strings"
 
 	"github.com/starter-go/security-gorm/rbacdb"
 	"github.com/starter-go/security/rbac"
@@ -40,13 +41,14 @@ func (inst *RegionConvertorImpl) ConvertD2E(c context.Context, o1 *rbac.RegionDT
 	rbacdb.CopyBaseFieldsFromDtoToEntity(&o1.BaseDTO, &o2.BaseEntity)
 	o2.ID = o1.ID
 
-	o2.FlagURL = o1.FlagURL
-	o2.DisplayName = o1.DisplayName
-	o2.SimpleName = o1.SimpleName
-	o2.Code2 = o1.Code2
-	o2.Code3 = o1.Code3
-	o2.PhoneCode = o1.PhoneCode
-	o2.FullName = o1.FullName
+	o2.FlagURL = strings.TrimSpace(o1.FlagURL)
+	o2.DisplayName = strings.TrimSpace(o1.DisplayName)
+	o2.SimpleName = strings.TrimSpace(o1.SimpleName)
+	o2.FullName = strings.TrimSpace(o1.FullName)
+
+	o2.PhoneCode = o1.PhoneCode.Normalize()
+	o2.Code2 = o1.Code2.Normalize()
+	o2.Code3 = o1.Code3.Normalize()
 
 	return o2, nil
 }

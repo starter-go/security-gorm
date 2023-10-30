@@ -17,9 +17,9 @@ type RegionEntity struct {
 	SimpleName  string
 	FullName    string
 	FlagURL     string
-	Code2       rbac.RegionCode2
-	Code3       rbac.RegionCode3
-	PhoneCode   rbac.RegionPhoneCode
+	Code2       rbac.RegionCode2     `gorm:"unique"`
+	Code3       rbac.RegionCode3     `gorm:"unique"`
+	PhoneCode   rbac.RegionPhoneCode `gorm:"unique"`
 }
 
 // RegionDAO 是数据库访问对象
