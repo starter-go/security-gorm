@@ -59,6 +59,10 @@ func (inst *UsersAuth) Support(r1 auth.Request) bool {
 		return false
 	}
 	mech := a1.Mechanism()
+	account := a1.Account()
+	if account == "root" {
+		return false // 对于 root 用户, 必须使用单独的验证机制
+	}
 	return (mech == auth.MechanismPassword)
 }
 
@@ -80,17 +84,16 @@ func (inst *UsersAuth) Authenticate(a1 auth.Authentication) ([]auth.Identity, er
 		return nil, err
 	}
 
-	return inst.makeIDs(user)
+	return inst.makeIDs(a1, user)
 }
 
-func (inst *UsersAuth) makeIDs(user1 *rbacdb.UserEntity) ([]auth.Identity, error) {
+func (inst *UsersAuth) makeIDs(a1 auth.Authentication, user1 *rbacdb.UserEntity) ([]auth.Identity, error) {
 	ctx := context.Background()
-	mechanism := auth.MechanismPassword
 	user2, err := inst.UserCvt.ConvertE2D(ctx, user1)
 	if err != nil {
 		return nil, err
 	}
-	id := auth.NewUserIdentity(mechanism, user2)
+	id := auth.NewUserIdentity(a1, user2)
 	ids := []auth.Identity{id}
 	return ids, nil
 }

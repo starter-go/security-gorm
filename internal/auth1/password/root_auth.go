@@ -83,17 +83,16 @@ func (inst *RootAuth) Authenticate(a auth.Authentication) ([]auth.Identity, erro
 	if err != nil {
 		return nil, err
 	}
-	return inst.makeIDs()
+	return inst.makeIDs(a)
 }
 
-func (inst *RootAuth) makeIDs() ([]auth.Identity, error) {
-	mechanism := auth.MechanismPassword
+func (inst *RootAuth) makeIDs(a1 auth.Authentication) ([]auth.Identity, error) {
 	user := &rbac.UserDTO{
 		Roles:    rbac.RoleNameList(rbac.RoleRoot),
 		Name:     "root",
 		NickName: "root",
 	}
-	id := auth.NewUserIdentity(mechanism, user)
+	id := auth.NewUserIdentity(a1, user)
 	ids := []auth.Identity{id}
 	return ids, nil
 }
