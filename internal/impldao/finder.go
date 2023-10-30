@@ -11,6 +11,7 @@ type finder struct {
 	conditions *rbac.Conditions
 	itemModel  any
 	listModel  any
+	all        bool // list-all-items
 }
 
 func (inst *finder) find() error {
@@ -18,6 +19,11 @@ func (inst *finder) find() error {
 	list := inst.listModel
 	item := inst.itemModel
 	db := inst.db
+
+	if inst.all {
+		res := db.Find(list)
+		return res.Error
+	}
 
 	// Conditions
 	if inst.hasConditions() {

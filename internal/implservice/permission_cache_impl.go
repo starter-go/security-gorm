@@ -72,7 +72,8 @@ func (inst *permissionCacheSnapshot) keyFor(o *rbac.PermissionDTO) string {
 
 func (inst *permissionCacheSnapshot) load(c context.Context, ser rbac.PermissionService) {
 	tab := make(map[string]*rbac.PermissionDTO)
-	list, err := ser.List(c, &rbac.PermissionQuery{}) // todo: list all
+	query := &rbac.PermissionQuery{All: true}
+	list, err := ser.List(c, query)
 	if err == nil {
 		for _, item := range list {
 			key := inst.keyFor(item)

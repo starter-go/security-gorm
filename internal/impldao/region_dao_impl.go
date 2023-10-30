@@ -95,6 +95,7 @@ func (inst *RegionDaoImpl) List(db *gorm.DB, q *rbac.RegionQuery) ([]*rbacdb.Reg
 	item := inst.model()
 
 	f := finder{}
+	f.all = q.All
 	f.listModel = &list
 	f.itemModel = item
 	f.page = &q.Pagination

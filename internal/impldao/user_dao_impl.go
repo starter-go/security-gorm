@@ -99,6 +99,7 @@ func (inst *UserDaoImpl) List(db *gorm.DB, q *rbac.UserQuery) ([]*rbacdb.UserEnt
 	item := inst.model()
 
 	f := finder{}
+	f.all = q.All
 	f.listModel = &list
 	f.itemModel = item
 	f.page = &q.Pagination

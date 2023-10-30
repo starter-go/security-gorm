@@ -95,6 +95,7 @@ func (inst *RoleDaoImpl) List(db *gorm.DB, q *rbac.RoleQuery) ([]*rbacdb.RoleEnt
 	item := inst.model()
 
 	f := finder{}
+	f.all = q.All
 	f.listModel = &list
 	f.itemModel = item
 	f.page = &q.Pagination
