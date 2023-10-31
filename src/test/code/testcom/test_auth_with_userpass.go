@@ -39,5 +39,5 @@ func (inst *TestAuthWithUserPassword) run() error {
 		Secret:    "666",
 	})
 
-	return inst.RbacAuthService.Handle(ctx, au)
+	return inst.RbacAuthService.Handle(ctx, "test", au)
 }
