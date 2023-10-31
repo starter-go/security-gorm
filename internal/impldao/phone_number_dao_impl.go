@@ -48,6 +48,7 @@ func (inst *PhoneNumberDaoImpl) Insert(db *gorm.DB, o *rbacdb.PhoneNumberEntity)
 	o.UUID = inst.UUIDService.Build().Class("rbacdb.PhoneNumberEntity").Generate()
 
 	db = inst.Agent.DB(db)
+	inst.normalizeEntity(o)
 	res := db.Create(o)
 	return inst.makeResult(o, res.Error)
 }
@@ -59,6 +60,7 @@ func (inst *PhoneNumberDaoImpl) Update(db *gorm.DB, id rbac.PhoneNumberID, updat
 	res := db.Find(m, id)
 	if res.Error == nil {
 		updater(m)
+		inst.normalizeEntity(m)
 		res = db.Save(m)
 	}
 	return inst.makeResult(m, res.Error)
@@ -110,4 +112,11 @@ func (inst *PhoneNumberDaoImpl) List(db *gorm.DB, q *rbac.PhoneNumberQuery) ([]*
 		return nil, err
 	}
 	return list, nil
+}
+
+func (inst *PhoneNumberDaoImpl) normalizeEntity(ent *rbacdb.PhoneNumberEntity) {
+	part1 := ent.Region.String()
+	part2 := ent.SimpleNumber.String()
+	pure := rbac.PurePhoneNumber(part1 + part2)
+	ent.FullNumber = pure.Normalize()
 }

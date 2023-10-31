@@ -13,7 +13,7 @@ type PhoneNumberEntity struct {
 
 	BaseEntity
 
-	FullNumber rbac.FullPhoneNumber `gorm:"unique"`
+	FullNumber rbac.PurePhoneNumber `gorm:"unique"`
 
 	Region       rbac.RegionPhoneCode
 	SimpleNumber rbac.SimplePhoneNumber
