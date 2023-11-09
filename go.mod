@@ -12,12 +12,12 @@ require (
 	github.com/microsoft/go-mssqldb v1.6.0 // indirect
 	github.com/starter-go/afs v0.9.2 // indirect
 	github.com/starter-go/application v0.9.15 // indirect
-	github.com/starter-go/base v0.9.9 // indirect
+	github.com/starter-go/base v0.9.10 // indirect
 	github.com/starter-go/configen v0.9.3 // indirect
 	github.com/starter-go/libgorm v0.9.11 // indirect
 	github.com/starter-go/module-gorm-mysql v0.9.11 // indirect
 	github.com/starter-go/module-gorm-sqlserver v0.9.11 // indirect
-	github.com/starter-go/security v1.0.39 // indirect
+	github.com/starter-go/security v1.0.40 // indirect
 	github.com/starter-go/starter v1.0.4 // indirect
 	github.com/starter-go/vlog v0.9.5 // indirect
 	golang.org/x/crypto v0.14.0 // indirect
