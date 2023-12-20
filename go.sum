@@ -93,6 +93,8 @@ github.com/starter-go/module-gorm-sqlserver v0.9.11 h1:9Js8dxJPzM1D8XOey0udfbtYz
 github.com/starter-go/module-gorm-sqlserver v0.9.11/go.mod h1:D6DeeVy7vzuRcdZsmcGkaObfGgTJs0IriZlg8AfyqG0=
 github.com/starter-go/module-gorm-sqlserver v0.9.12 h1:CbYm8iso2JYJfSvSMrKPnpWGM+qxTBPFPnSIATylzK0=
 github.com/starter-go/module-gorm-sqlserver v0.9.12/go.mod h1:wedB0beg5CbfCIUYa+N/E6NLKWtYwluOfDMdRiqq9ug=
+github.com/starter-go/rbac v0.0.1 h1:lreMbRRyrJV2xPeotS9cetiS7vC2CttodzfLtZY1+0o=
+github.com/starter-go/rbac v0.0.1/go.mod h1:N93w2twpuiCD1yDDBeVyRm2a+Voz0OIpIpxpuox7fUY=
 github.com/starter-go/security v1.0.20 h1:28K/Oj/SI4YOWcuFFku3JyRVk3ubkcUHY/B2CFaXsZc=
 github.com/starter-go/security v1.0.20/go.mod h1:pzS9wG/r9bNNnZLgTw9MB5kRuaOWCV/uffxh2oMzkbI=
 github.com/starter-go/security v1.0.21 h1:g6iJY+Zwoa0IRHZFUEOH8SP/JnmgPqMcIc80z3eQXPo=
@@ -131,6 +133,8 @@ github.com/starter-go/security v1.0.41 h1:rbRZTKwHTy2xfNtbtWRVJkPGUAAREumKfoRCx8
 github.com/starter-go/security v1.0.41/go.mod h1:FSUySusR9VV/M+CHiKIhHPC4qBR3YKVkHRp/6RwmOe8=
 github.com/starter-go/security v1.0.43 h1:ikSNqS/LuGorxb5n1tcwNS19f/hYAtNZE0kdgJKHqJQ=
 github.com/starter-go/security v1.0.43/go.mod h1:a37FpUpJQcFKnDeRIEdRzWgO1IZcuDZUGvrmH3p9gOo=
+github.com/starter-go/security v1.0.44 h1:HJoJlrzWm5JHz50pkDmSL+U17M/hXp/ezTfjyZGPGN4=
+github.com/starter-go/security v1.0.44/go.mod h1:uDZsGjNZI4ifukqxE2kDPEnaZo1kd8JMC2d7eX9OGGk=
 github.com/starter-go/starter v1.0.3 h1:12X37D4n8boyXCi6+OYKvJyIuoKuDXF6jtO9tzt6IVs=
 github.com/starter-go/starter v1.0.3/go.mod h1:dGI7FtGwccFzyJrnbp4HuWdiZBO602aptheV62x7ZZ0=
 github.com/starter-go/starter v1.0.4 h1:HcryIw7l09JwaaeSEs7og5AneOfEI52IaxpOEf2QUVA=

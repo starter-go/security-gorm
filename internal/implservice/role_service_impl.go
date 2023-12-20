@@ -3,8 +3,8 @@ package implservice
 import (
 	"context"
 
+	"github.com/starter-go/rbac"
 	"github.com/starter-go/security-gorm/rbacdb"
-	"github.com/starter-go/security/rbac"
 )
 
 // RoleServiceImpl ...

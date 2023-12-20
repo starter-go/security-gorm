@@ -12,8 +12,8 @@ import (
 
 const (
 	theModuleName        = "github.com/starter-go/security-gorm"
-	theModuleVersion     = "v0.0.17"
-	theModuleRevision    = 17
+	theModuleVersion     = "v1.0.44"
+	theModuleRevision    = 18
 	theModuleResPath     = "src/main/resources"
 	theTestModuleResPath = "src/test/resources"
 )

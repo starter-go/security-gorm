@@ -7,7 +7,7 @@ import (
 	"sync"
 
 	"github.com/starter-go/base/lang"
-	"github.com/starter-go/security/rbac"
+	"github.com/starter-go/rbac"
 )
 
 // PermissionCacheImpl ...

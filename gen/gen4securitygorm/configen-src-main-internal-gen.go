@@ -1,12 +1,12 @@
 package gen4securitygorm
 import (
+    p24287f458 "github.com/starter-go/rbac"
     pd2ff24bd1 "github.com/starter-go/security-gorm/internal/auth1/password"
     p047c6784c "github.com/starter-go/security-gorm/internal/implconvertor"
     p8617045c5 "github.com/starter-go/security-gorm/internal/impldao"
     p0d13f39fa "github.com/starter-go/security-gorm/internal/implservice"
     pf5d2c6fae "github.com/starter-go/security-gorm/rbacdb"
     p9621e8b71 "github.com/starter-go/security/random"
-    p2dece1e49 "github.com/starter-go/security/rbac"
      "github.com/starter-go/application"
 )
 
@@ -590,7 +590,7 @@ func (inst*p8617045c5b_impldao_UserDaoImpl) getUUIDService(ie application.Inject
 //
 // id:com-0d13f39fa52fea3f-implservice-PermissionCacheImpl
 // class:
-// alias:alias-2dece1e495fd61b93f78009d229f38cf-PermissionCache
+// alias:alias-24287f4589fe5add27fb48a88d706565-PermissionCache
 // scope:singleton
 //
 type p0d13f39fa5_implservice_PermissionCacheImpl struct {
@@ -600,7 +600,7 @@ func (inst* p0d13f39fa5_implservice_PermissionCacheImpl) register(cr application
 	r := cr.NewRegistration()
 	r.ID = "com-0d13f39fa52fea3f-implservice-PermissionCacheImpl"
 	r.Classes = ""
-	r.Aliases = "alias-2dece1e495fd61b93f78009d229f38cf-PermissionCache"
+	r.Aliases = "alias-24287f4589fe5add27fb48a88d706565-PermissionCache"
 	r.Scope = "singleton"
 	r.NewFunc = inst.new
 	r.InjectFunc = inst.inject
@@ -624,8 +624,8 @@ func (inst* p0d13f39fa5_implservice_PermissionCacheImpl) inject(injext applicati
 }
 
 
-func (inst*p0d13f39fa5_implservice_PermissionCacheImpl) getPermissionService(ie application.InjectionExt)p2dece1e49.PermissionService{
-    return ie.GetComponent("#alias-2dece1e495fd61b93f78009d229f38cf-PermissionService").(p2dece1e49.PermissionService)
+func (inst*p0d13f39fa5_implservice_PermissionCacheImpl) getPermissionService(ie application.InjectionExt)p24287f458.PermissionService{
+    return ie.GetComponent("#alias-24287f4589fe5add27fb48a88d706565-PermissionService").(p24287f458.PermissionService)
 }
 
 
@@ -634,7 +634,7 @@ func (inst*p0d13f39fa5_implservice_PermissionCacheImpl) getPermissionService(ie 
 //
 // id:com-0d13f39fa52fea3f-implservice-PermissionServiceImpl
 // class:
-// alias:alias-2dece1e495fd61b93f78009d229f38cf-PermissionService
+// alias:alias-24287f4589fe5add27fb48a88d706565-PermissionService
 // scope:singleton
 //
 type p0d13f39fa5_implservice_PermissionServiceImpl struct {
@@ -644,7 +644,7 @@ func (inst* p0d13f39fa5_implservice_PermissionServiceImpl) register(cr applicati
 	r := cr.NewRegistration()
 	r.ID = "com-0d13f39fa52fea3f-implservice-PermissionServiceImpl"
 	r.Classes = ""
-	r.Aliases = "alias-2dece1e495fd61b93f78009d229f38cf-PermissionService"
+	r.Aliases = "alias-24287f4589fe5add27fb48a88d706565-PermissionService"
 	r.Scope = "singleton"
 	r.NewFunc = inst.new
 	r.InjectFunc = inst.inject
@@ -680,8 +680,8 @@ func (inst*p0d13f39fa5_implservice_PermissionServiceImpl) getPermissionConvertor
 }
 
 
-func (inst*p0d13f39fa5_implservice_PermissionServiceImpl) getPermissionCache(ie application.InjectionExt)p2dece1e49.PermissionCache{
-    return ie.GetComponent("#alias-2dece1e495fd61b93f78009d229f38cf-PermissionCache").(p2dece1e49.PermissionCache)
+func (inst*p0d13f39fa5_implservice_PermissionServiceImpl) getPermissionCache(ie application.InjectionExt)p24287f458.PermissionCache{
+    return ie.GetComponent("#alias-24287f4589fe5add27fb48a88d706565-PermissionCache").(p24287f458.PermissionCache)
 }
 
 
@@ -690,7 +690,7 @@ func (inst*p0d13f39fa5_implservice_PermissionServiceImpl) getPermissionCache(ie 
 //
 // id:com-0d13f39fa52fea3f-implservice-RegionServiceImpl
 // class:
-// alias:alias-2dece1e495fd61b93f78009d229f38cf-RegionService
+// alias:alias-24287f4589fe5add27fb48a88d706565-RegionService
 // scope:singleton
 //
 type p0d13f39fa5_implservice_RegionServiceImpl struct {
@@ -700,7 +700,7 @@ func (inst* p0d13f39fa5_implservice_RegionServiceImpl) register(cr application.C
 	r := cr.NewRegistration()
 	r.ID = "com-0d13f39fa52fea3f-implservice-RegionServiceImpl"
 	r.Classes = ""
-	r.Aliases = "alias-2dece1e495fd61b93f78009d229f38cf-RegionService"
+	r.Aliases = "alias-24287f4589fe5add27fb48a88d706565-RegionService"
 	r.Scope = "singleton"
 	r.NewFunc = inst.new
 	r.InjectFunc = inst.inject
@@ -740,7 +740,7 @@ func (inst*p0d13f39fa5_implservice_RegionServiceImpl) getRegionConvertor(ie appl
 //
 // id:com-0d13f39fa52fea3f-implservice-RoleServiceImpl
 // class:
-// alias:alias-2dece1e495fd61b93f78009d229f38cf-RoleService
+// alias:alias-24287f4589fe5add27fb48a88d706565-RoleService
 // scope:singleton
 //
 type p0d13f39fa5_implservice_RoleServiceImpl struct {
@@ -750,7 +750,7 @@ func (inst* p0d13f39fa5_implservice_RoleServiceImpl) register(cr application.Com
 	r := cr.NewRegistration()
 	r.ID = "com-0d13f39fa52fea3f-implservice-RoleServiceImpl"
 	r.Classes = ""
-	r.Aliases = "alias-2dece1e495fd61b93f78009d229f38cf-RoleService"
+	r.Aliases = "alias-24287f4589fe5add27fb48a88d706565-RoleService"
 	r.Scope = "singleton"
 	r.NewFunc = inst.new
 	r.InjectFunc = inst.inject
@@ -790,7 +790,7 @@ func (inst*p0d13f39fa5_implservice_RoleServiceImpl) getRoleConvertor(ie applicat
 //
 // id:com-0d13f39fa52fea3f-implservice-UserServiceImpl
 // class:
-// alias:alias-2dece1e495fd61b93f78009d229f38cf-UserService
+// alias:alias-24287f4589fe5add27fb48a88d706565-UserService
 // scope:singleton
 //
 type p0d13f39fa5_implservice_UserServiceImpl struct {
@@ -800,7 +800,7 @@ func (inst* p0d13f39fa5_implservice_UserServiceImpl) register(cr application.Com
 	r := cr.NewRegistration()
 	r.ID = "com-0d13f39fa52fea3f-implservice-UserServiceImpl"
 	r.Classes = ""
-	r.Aliases = "alias-2dece1e495fd61b93f78009d229f38cf-UserService"
+	r.Aliases = "alias-24287f4589fe5add27fb48a88d706565-UserService"
 	r.Scope = "singleton"
 	r.NewFunc = inst.new
 	r.InjectFunc = inst.inject

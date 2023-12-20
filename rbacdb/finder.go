@@ -1,7 +1,7 @@
 package rbacdb
 
 import (
-	"github.com/starter-go/security/rbac"
+	"github.com/starter-go/rbac"
 	"gorm.io/gorm"
 )
 

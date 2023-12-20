@@ -17,7 +17,8 @@ require (
 	github.com/starter-go/libgorm v0.9.12 // indirect
 	github.com/starter-go/module-gorm-mysql v0.9.12 // indirect
 	github.com/starter-go/module-gorm-sqlserver v0.9.12 // indirect
-	github.com/starter-go/security v1.0.43 // indirect
+	github.com/starter-go/rbac v0.0.1 // indirect
+	github.com/starter-go/security v1.0.44 // indirect
 	github.com/starter-go/starter v1.0.7 // indirect
 	github.com/starter-go/vlog v0.9.7 // indirect
 	golang.org/x/crypto v0.14.0 // indirect

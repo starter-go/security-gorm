@@ -5,9 +5,9 @@ import (
 	"net/http"
 
 	"github.com/starter-go/application"
+	"github.com/starter-go/rbac"
 	"github.com/starter-go/security-gorm/src/test/code/testboot"
 	"github.com/starter-go/security/auth"
-	"github.com/starter-go/security/rbac"
 )
 
 // TestAuthWithUserPassword ... 测试身份验证

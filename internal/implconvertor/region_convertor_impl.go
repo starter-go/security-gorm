@@ -4,8 +4,8 @@ import (
 	"context"
 	"strings"
 
+	"github.com/starter-go/rbac"
 	"github.com/starter-go/security-gorm/rbacdb"
-	"github.com/starter-go/security/rbac"
 )
 
 // RegionConvertorImpl ...

@@ -6,9 +6,9 @@ import (
 
 	"github.com/starter-go/application"
 	"github.com/starter-go/base/lang"
+	"github.com/starter-go/rbac"
 	"github.com/starter-go/security/auth"
 	"github.com/starter-go/security/random"
-	"github.com/starter-go/security/rbac"
 )
 
 // RootAuth 提供 username(root)+password(随机生成) 的验证机制
