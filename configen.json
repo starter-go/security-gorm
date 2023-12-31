@@ -3,12 +3,12 @@
         "version": "4",
         "sources": [
             {
-                "id": "main-rbacdb",
+                "id": "main-r",
                 "path": "rbacdb",
                 "r": true
             },
             {
-                "id": "main-internal",
+                "id": "main-i",
                 "path": "internal",
                 "r": true
             },
@@ -21,15 +21,15 @@
         "destinations": [
             {
                 "id": "main",
-                "path": "gen/gen4securitygorm",
+                "path": "gen/main4securitygorm",
                 "sources": [
-                    "main-internal",
-                    "main-rbacdb"
+                    "main-i",
+                    "main-r"
                 ]
             },
             {
                 "id": "test",
-                "path": "gen/gen4securitygormtest",
+                "path": "gen/test4securitygorm",
                 "sources": [
                     "test"
                 ]

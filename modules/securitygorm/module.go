@@ -2,13 +2,14 @@ package securitygorm
 
 import (
 	"github.com/starter-go/application"
+	"github.com/starter-go/security-gorm/gen/main4securitygorm"
+
 	securitygorm "github.com/starter-go/security-gorm"
-	"github.com/starter-go/security-gorm/gen/gen4securitygorm"
 )
 
-// Module ... 导出模块
+// Module 导出模块 [github.com/starter-go/security-gorm]
 func Module() application.Module {
-	mb := securitygorm.ModuleT()
-	mb.Components(gen4securitygorm.ComForSecurityGorm)
+	mb := securitygorm.NewMainModule()
+	mb.Components(main4securitygorm.ComForSecurityGorm)
 	return mb.Create()
 }

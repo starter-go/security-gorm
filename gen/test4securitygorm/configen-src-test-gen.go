@@ -1,4 +1,4 @@
-package gen4securitygormtest
+package test4securitygorm
 import (
     p0ef6f2938 "github.com/starter-go/application"
     p24287f458 "github.com/starter-go/rbac"

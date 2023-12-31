@@ -1,4 +1,4 @@
-package gen4securitygorm
+package main4securitygorm
 import (
     p24287f458 "github.com/starter-go/rbac"
     pd2ff24bd1 "github.com/starter-go/security-gorm/internal/auth1/password"

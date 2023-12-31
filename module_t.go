@@ -5,47 +5,60 @@ import (
 
 	"github.com/starter-go/application"
 	"github.com/starter-go/libgorm/modules/libgorm"
-	modulegormmysql "github.com/starter-go/module-gorm-mysql"
-	modulegormsqlserver "github.com/starter-go/module-gorm-sqlserver"
+	"github.com/starter-go/module-gorm-mysql/modules/mysql"
+	"github.com/starter-go/module-gorm-sqlserver/modules/sqlserver"
 	"github.com/starter-go/security/modules/security"
 )
 
 const (
-	theModuleName        = "github.com/starter-go/security-gorm"
-	theModuleVersion     = "v1.0.44"
-	theModuleRevision    = 18
-	theModuleResPath     = "src/main/resources"
+	theModuleName     = "github.com/starter-go/security-gorm"
+	theModuleVersion  = "v1.0.44"
+	theModuleRevision = 18
+)
+
+////////////////////////////////////////////////////////////////////////////////
+
+const (
+	theMainModuleResPath = "src/main/resources"
 	theTestModuleResPath = "src/test/resources"
 )
 
 //go:embed "src/main/resources"
-var theModuleResFS embed.FS
+var theMainModuleResFS embed.FS
 
 //go:embed "src/test/resources"
 var theTestModuleResFS embed.FS
 
-// ModuleT ...
-func ModuleT() *application.ModuleBuilder {
-	mb := &application.ModuleBuilder{}
+////////////////////////////////////////////////////////////////////////////////
+
+// NewMainModule 创建模块 [github.com/starter-go/security-gorm]
+func NewMainModule() *application.ModuleBuilder {
+
+	mb := new(application.ModuleBuilder)
 	mb.Name(theModuleName)
 	mb.Version(theModuleVersion)
 	mb.Revision(theModuleRevision)
-	mb.EmbedResources(theModuleResFS, theModuleResPath)
+
+	mb.EmbedResources(theMainModuleResFS, theMainModuleResPath)
 
 	mb.Depend(security.Module())
 	mb.Depend(libgorm.Module())
-	mb.Depend(modulegormsqlserver.Module())
-	mb.Depend(modulegormmysql.Module())
 
 	return mb
 }
 
-// TestModuleT ...
-func TestModuleT() *application.ModuleBuilder {
-	mb := &application.ModuleBuilder{}
+// NewTestModule 创建模块 [github.com/starter-go/security-gorm#test]
+func NewTestModule() *application.ModuleBuilder {
+
+	mb := new(application.ModuleBuilder)
 	mb.Name(theModuleName + "#test")
 	mb.Version(theModuleVersion)
 	mb.Revision(theModuleRevision)
+
 	mb.EmbedResources(theTestModuleResFS, theTestModuleResPath)
+
+	mb.Depend(sqlserver.Module())
+	mb.Depend(mysql.Module())
+
 	return mb
 }

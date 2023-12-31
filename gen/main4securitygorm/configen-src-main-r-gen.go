@@ -1,4 +1,4 @@
-package gen4securitygorm
+package main4securitygorm
 import (
     p512a30914 "github.com/starter-go/libgorm"
     pf5d2c6fae "github.com/starter-go/security-gorm/rbacdb"
