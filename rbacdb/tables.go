@@ -8,12 +8,13 @@ var theTableNamePrefix string
 func entities() []any {
 	// todo:list
 	list := make([]any, 0)
-	list = append(list, &PermissionEntity{})
-	list = append(list, &RoleEntity{})
-	list = append(list, &UserEntity{})
 	list = append(list, &EmailAddressEntity{})
+	list = append(list, &GroupEntity{})
+	list = append(list, &PermissionEntity{})
 	list = append(list, &PhoneNumberEntity{})
 	list = append(list, &RegionEntity{})
+	list = append(list, &RoleEntity{})
+	list = append(list, &UserEntity{})
 	return list
 }
 
@@ -47,4 +48,9 @@ func (PhoneNumberEntity) TableName() string {
 // TableName ...
 func (RegionEntity) TableName() string {
 	return theTableNamePrefix + "regions"
+}
+
+// TableName ...
+func (GroupEntity) TableName() string {
+	return theTableNamePrefix + "groups"
 }

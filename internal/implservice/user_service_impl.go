@@ -40,6 +40,8 @@ func (inst *UserServiceImpl) Update(c context.Context, id rbac.UserID, o *rbac.U
 		// todo ...
 		ent.Avatar = o.Avatar
 		ent.Nickname = o.NickName
+		ent.Roles = o.Roles
+		ent.Enabled = o.Enabled
 	})
 	if err != nil {
 		return nil, err

@@ -31,6 +31,7 @@ func CopyBaseFieldsFromEntityToDTO(src *BaseEntity, dst *rbac.BaseDTO) {
 	dst.UpdatedAt = lang.NewTime(src.UpdatedAt)
 	dst.DeletedAt = ConvertTimeFromGorm(src.DeletedAt)
 
+	dst.Group = src.Group
 	dst.Owner = src.Owner
 	dst.Updater = src.Updater
 	dst.Creator = src.Creator
@@ -46,6 +47,7 @@ func CopyBaseFieldsFromDtoToEntity(src *rbac.BaseDTO, dst *BaseEntity) {
 	// dst.UpdatedAt = src.UpdatedAt.Time()
 	// dst.DeletedAt = ConvertTimeToGorm(src.DeletedAt)
 
+	dst.Group = src.Group
 	dst.Owner = src.Owner
 	dst.Updater = src.Updater
 	dst.Creator = src.Creator

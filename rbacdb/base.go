@@ -16,6 +16,7 @@ type BaseEntity struct {
 	UpdatedAt time.Time
 	DeletedAt gorm.DeletedAt `gorm:"index"`
 
+	Group   rbac.GroupID
 	Owner   rbac.UserID
 	Creator rbac.UserID
 	Updater rbac.UserID

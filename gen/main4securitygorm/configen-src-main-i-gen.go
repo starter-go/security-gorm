@@ -122,6 +122,44 @@ func (inst*pd2ff24bd19_password_UsersAuth) getUserCvt(ie application.InjectionEx
 
 
 
+// type p047c6784c.GroupConvertorImpl in package:github.com/starter-go/security-gorm/internal/implconvertor
+//
+// id:com-047c6784c4625f2a-implconvertor-GroupConvertorImpl
+// class:
+// alias:alias-f5d2c6fae036814399fa2ed06c0dc99f-GroupConvertor
+// scope:singleton
+//
+type p047c6784c4_implconvertor_GroupConvertorImpl struct {
+}
+
+func (inst* p047c6784c4_implconvertor_GroupConvertorImpl) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-047c6784c4625f2a-implconvertor-GroupConvertorImpl"
+	r.Classes = ""
+	r.Aliases = "alias-f5d2c6fae036814399fa2ed06c0dc99f-GroupConvertor"
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* p047c6784c4_implconvertor_GroupConvertorImpl) new() any {
+    return &p047c6784c.GroupConvertorImpl{}
+}
+
+func (inst* p047c6784c4_implconvertor_GroupConvertorImpl) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*p047c6784c.GroupConvertorImpl)
+	nop(ie, com)
+
+	
+
+
+    return nil
+}
+
+
+
 // type p047c6784c.PermissionConvertorImpl in package:github.com/starter-go/security-gorm/internal/implconvertor
 //
 // id:com-047c6784c4625f2a-implconvertor-PermissionConvertorImpl
@@ -319,6 +357,56 @@ func (inst*p8617045c5b_impldao_EmailAddressDaoImpl) getAgent(ie application.Inje
 
 
 func (inst*p8617045c5b_impldao_EmailAddressDaoImpl) getUUIDService(ie application.InjectionExt)p9621e8b71.UUIDService{
+    return ie.GetComponent("#alias-9621e8b71013b0fc25942a1749ed3652-UUIDService").(p9621e8b71.UUIDService)
+}
+
+
+
+// type p8617045c5.GroupDaoImpl in package:github.com/starter-go/security-gorm/internal/impldao
+//
+// id:com-8617045c5b2ce8e3-impldao-GroupDaoImpl
+// class:
+// alias:alias-f5d2c6fae036814399fa2ed06c0dc99f-GroupDAO
+// scope:singleton
+//
+type p8617045c5b_impldao_GroupDaoImpl struct {
+}
+
+func (inst* p8617045c5b_impldao_GroupDaoImpl) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-8617045c5b2ce8e3-impldao-GroupDaoImpl"
+	r.Classes = ""
+	r.Aliases = "alias-f5d2c6fae036814399fa2ed06c0dc99f-GroupDAO"
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* p8617045c5b_impldao_GroupDaoImpl) new() any {
+    return &p8617045c5.GroupDaoImpl{}
+}
+
+func (inst* p8617045c5b_impldao_GroupDaoImpl) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*p8617045c5.GroupDaoImpl)
+	nop(ie, com)
+
+	
+    com.Agent = inst.getAgent(ie)
+    com.UUIDService = inst.getUUIDService(ie)
+
+
+    return nil
+}
+
+
+func (inst*p8617045c5b_impldao_GroupDaoImpl) getAgent(ie application.InjectionExt)pf5d2c6fae.LocalAgent{
+    return ie.GetComponent("#alias-f5d2c6fae036814399fa2ed06c0dc99f-LocalAgent").(pf5d2c6fae.LocalAgent)
+}
+
+
+func (inst*p8617045c5b_impldao_GroupDaoImpl) getUUIDService(ie application.InjectionExt)p9621e8b71.UUIDService{
     return ie.GetComponent("#alias-9621e8b71013b0fc25942a1749ed3652-UUIDService").(p9621e8b71.UUIDService)
 }
 
@@ -582,6 +670,56 @@ func (inst*p8617045c5b_impldao_UserDaoImpl) getPhoneNumberDAO(ie application.Inj
 
 func (inst*p8617045c5b_impldao_UserDaoImpl) getUUIDService(ie application.InjectionExt)p9621e8b71.UUIDService{
     return ie.GetComponent("#alias-9621e8b71013b0fc25942a1749ed3652-UUIDService").(p9621e8b71.UUIDService)
+}
+
+
+
+// type p0d13f39fa.GroupServiceImpl in package:github.com/starter-go/security-gorm/internal/implservice
+//
+// id:com-0d13f39fa52fea3f-implservice-GroupServiceImpl
+// class:
+// alias:alias-24287f4589fe5add27fb48a88d706565-GroupService
+// scope:singleton
+//
+type p0d13f39fa5_implservice_GroupServiceImpl struct {
+}
+
+func (inst* p0d13f39fa5_implservice_GroupServiceImpl) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-0d13f39fa52fea3f-implservice-GroupServiceImpl"
+	r.Classes = ""
+	r.Aliases = "alias-24287f4589fe5add27fb48a88d706565-GroupService"
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* p0d13f39fa5_implservice_GroupServiceImpl) new() any {
+    return &p0d13f39fa.GroupServiceImpl{}
+}
+
+func (inst* p0d13f39fa5_implservice_GroupServiceImpl) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*p0d13f39fa.GroupServiceImpl)
+	nop(ie, com)
+
+	
+    com.GroupDao = inst.getGroupDao(ie)
+    com.GroupConvertor = inst.getGroupConvertor(ie)
+
+
+    return nil
+}
+
+
+func (inst*p0d13f39fa5_implservice_GroupServiceImpl) getGroupDao(ie application.InjectionExt)pf5d2c6fae.GroupDAO{
+    return ie.GetComponent("#alias-f5d2c6fae036814399fa2ed06c0dc99f-GroupDAO").(pf5d2c6fae.GroupDAO)
+}
+
+
+func (inst*p0d13f39fa5_implservice_GroupServiceImpl) getGroupConvertor(ie application.InjectionExt)pf5d2c6fae.GroupConvertor{
+    return ie.GetComponent("#alias-f5d2c6fae036814399fa2ed06c0dc99f-GroupConvertor").(pf5d2c6fae.GroupConvertor)
 }
 
 

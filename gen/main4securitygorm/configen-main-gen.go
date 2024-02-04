@@ -30,16 +30,19 @@ func (inst *autoRegistrar) register(factory comFactory) error {
 func (inst*autoRegistrar) addAll() error {
 
     
+    inst.register(&p047c6784c4_implconvertor_GroupConvertorImpl{})
     inst.register(&p047c6784c4_implconvertor_PermissionConvertorImpl{})
     inst.register(&p047c6784c4_implconvertor_RegionConvertorImpl{})
     inst.register(&p047c6784c4_implconvertor_RoleConvertorImpl{})
     inst.register(&p047c6784c4_implconvertor_UserConvertorImpl{})
+    inst.register(&p0d13f39fa5_implservice_GroupServiceImpl{})
     inst.register(&p0d13f39fa5_implservice_PermissionCacheImpl{})
     inst.register(&p0d13f39fa5_implservice_PermissionServiceImpl{})
     inst.register(&p0d13f39fa5_implservice_RegionServiceImpl{})
     inst.register(&p0d13f39fa5_implservice_RoleServiceImpl{})
     inst.register(&p0d13f39fa5_implservice_UserServiceImpl{})
     inst.register(&p8617045c5b_impldao_EmailAddressDaoImpl{})
+    inst.register(&p8617045c5b_impldao_GroupDaoImpl{})
     inst.register(&p8617045c5b_impldao_PermissionDaoImpl{})
     inst.register(&p8617045c5b_impldao_PhoneNumberDaoImpl{})
     inst.register(&p8617045c5b_impldao_RegionDaoImpl{})
