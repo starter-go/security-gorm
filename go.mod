@@ -9,7 +9,7 @@ require (
 	github.com/starter-go/module-gorm-mysql v1.0.0 // direct
 	github.com/starter-go/module-gorm-sqlserver v1.0.0 // direct
 	github.com/starter-go/rbac v0.0.8 // direct
-	github.com/starter-go/security v1.0.52 // direct
+	github.com/starter-go/security v1.0.53 // direct
 	github.com/starter-go/starter v1.0.10 // direct
 	github.com/starter-go/vlog v0.9.8 // direct
 	gorm.io/gorm v1.25.5 // direct
