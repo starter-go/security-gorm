@@ -137,6 +137,8 @@ github.com/starter-go/security v0.0.0-20240716125944-b64506d38d5c h1:2lK23hxP9Qr
 github.com/starter-go/security v0.0.0-20240716125944-b64506d38d5c/go.mod h1:ULVgoPGaSuTBnF4fadbE4aOUqkn/QKy754JRxkn3SCE=
 github.com/starter-go/security v0.0.0-20240716132334-81a5abda1050 h1:dqp1J1ygSrmCQZMd4q6W5r+WId7WAxrorNxMJBrv7E4=
 github.com/starter-go/security v0.0.0-20240716132334-81a5abda1050/go.mod h1:ULVgoPGaSuTBnF4fadbE4aOUqkn/QKy754JRxkn3SCE=
+github.com/starter-go/security v0.0.0-20240717092359-6087ec30520d h1:x7Abkj12Ek30JLhMQT4S0USXMmJ4IS0arSE9zah15pY=
+github.com/starter-go/security v0.0.0-20240717092359-6087ec30520d/go.mod h1:WQkxWC12s/qpasD0Mbc3IiTN+Xp94nJwbe0NkLiKrQg=
 github.com/starter-go/security v1.0.20 h1:28K/Oj/SI4YOWcuFFku3JyRVk3ubkcUHY/B2CFaXsZc=
 github.com/starter-go/security v1.0.20/go.mod h1:pzS9wG/r9bNNnZLgTw9MB5kRuaOWCV/uffxh2oMzkbI=
 github.com/starter-go/security v1.0.21 h1:g6iJY+Zwoa0IRHZFUEOH8SP/JnmgPqMcIc80z3eQXPo=
