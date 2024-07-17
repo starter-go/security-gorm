@@ -30,7 +30,6 @@ func (inst *autoRegistrar) register(factory comFactory) error {
 func (inst*autoRegistrar) addAll() error {
 
     
-    inst.register(&pe31a5ae465_testcom_Bootstrap{})
     inst.register(&pe31a5ae465_testcom_TestAdminPermissions{})
     inst.register(&pe31a5ae465_testcom_TestAdminRoles{})
     inst.register(&pe31a5ae465_testcom_TestAdminUsers{})

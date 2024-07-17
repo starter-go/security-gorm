@@ -27,6 +27,7 @@ func (inst *UserConvertorImpl) ConvertE2D(c context.Context, o1 *rbacdb.UserEnti
 	o2.NickName = o1.Nickname
 	o2.Roles = o1.Roles
 	o2.Enabled = o1.Enabled
+	o2.Language = o1.Language
 	return o2, nil
 }
 
@@ -40,6 +41,7 @@ func (inst *UserConvertorImpl) ConvertD2E(c context.Context, o1 *rbac.UserDTO) (
 	o2.Nickname = o1.NickName
 	o2.Roles = o1.Roles.Normalize()
 	o2.Enabled = o1.Enabled
+	o2.Language = o1.Language
 	return o2, nil
 }
 

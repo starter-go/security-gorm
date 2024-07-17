@@ -18,6 +18,7 @@ type UserEntity struct {
 
 	Nickname string              // 昵称
 	Avatar   string              // 头像 (HTTP-URL)
+	Language string              // i18n 语言
 	Phone    rbac.PhoneNumberID  // 主要的手机号
 	Email    rbac.EmailAddressID // 主要的 e-mail 地址
 	Roles    rbac.RoleNameList   // 用户的角色

@@ -9,7 +9,8 @@ import (
 	"github.com/starter-go/application"
 	"github.com/starter-go/base/lang"
 	"github.com/starter-go/rbac"
-	"github.com/starter-go/security-gorm/src/test/code/testboot"
+	"github.com/starter-go/security-gorm/src/test/code/cases"
+	"github.com/starter-go/units"
 	"github.com/starter-go/vlog"
 )
 
@@ -17,24 +18,46 @@ import (
 type TestAdminPermissions struct {
 
 	//starter:component
-	_as func(testboot.BootingRegistry) //starter:as(".")
+	_as func(units.Units) //starter:as(".")
 
 	AC                application.Context    //starter:inject("context")
 	Permissionservice rbac.PermissionService //starter:inject("#")
 }
 
-func (inst *TestAdminPermissions) _impl() {
-	inst._as(inst)
+func (inst *TestAdminPermissions) _impl() units.Units {
+	return inst
 }
 
-// Boots ...
-func (inst *TestAdminPermissions) Boots() []*testboot.Boot {
-	bl := testboot.BootList{}
-	bl.Handle(http.MethodGet, "/api/v1/permissions", inst.doTestGetList)
-	bl.Handle(http.MethodPost, "/api/v1/permissions", inst.doTestInsert)
-	bl.Handle(http.MethodPost, "/api/v1/permissions/crud", inst.doTestCRUD)
-	return bl.List()
+// Units ...
+func (inst *TestAdminPermissions) Units(list []*units.Registration) []*units.Registration {
+
+	list = append(list, &units.Registration{
+		Name:    cases.GetPermissionList,
+		Enabled: true,
+		Test:    inst.doTestGetList,
+	})
+	list = append(list, &units.Registration{
+		Name:    cases.InsertPermission,
+		Enabled: true,
+		Test:    inst.doTestInsert,
+	})
+	list = append(list, &units.Registration{
+		Name:    cases.DoPermissionCRUD,
+		Enabled: true,
+		Test:    inst.doTestCRUD,
+	})
+
+	return list
 }
+
+// // Boots ...
+// func (inst *TestAdminPermissions) Boots() []*testboot.Boot {
+// 	bl := testboot.BootList{}
+// 	bl.Handle(http.MethodGet, "/api/v1/permissions", inst.doTestGetList)
+// 	bl.Handle(http.MethodPost, "/api/v1/permissions", inst.doTestInsert)
+// 	bl.Handle(http.MethodPost, "/api/v1/permissions/crud", inst.doTestCRUD)
+// 	return bl.List()
+// }
 
 func (inst *TestAdminPermissions) doTestInsert() error {
 	now := lang.Now()

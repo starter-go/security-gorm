@@ -4,10 +4,6 @@ import (
 	"embed"
 
 	"github.com/starter-go/application"
-	"github.com/starter-go/libgorm/modules/libgorm"
-	"github.com/starter-go/module-gorm-mysql/modules/mysql"
-	"github.com/starter-go/module-gorm-sqlserver/modules/sqlserver"
-	"github.com/starter-go/security/modules/security"
 )
 
 const (
@@ -41,9 +37,6 @@ func NewMainModule() *application.ModuleBuilder {
 
 	mb.EmbedResources(theMainModuleResFS, theMainModuleResPath)
 
-	mb.Depend(security.Module())
-	mb.Depend(libgorm.Module())
-
 	return mb
 }
 
@@ -56,9 +49,6 @@ func NewTestModule() *application.ModuleBuilder {
 	mb.Revision(theModuleRevision)
 
 	mb.EmbedResources(theTestModuleResFS, theTestModuleResPath)
-
-	mb.Depend(sqlserver.Module())
-	mb.Depend(mysql.Module())
 
 	return mb
 }

@@ -3,13 +3,13 @@ package testcom
 import (
 	"encoding/json"
 	"fmt"
-	"net/http"
 	"strconv"
 
 	"github.com/starter-go/application"
 	"github.com/starter-go/base/lang"
 	"github.com/starter-go/rbac"
-	"github.com/starter-go/security-gorm/src/test/code/testboot"
+	"github.com/starter-go/security-gorm/src/test/code/cases"
+	"github.com/starter-go/units"
 	"github.com/starter-go/vlog"
 )
 
@@ -17,24 +17,46 @@ import (
 type TestAdminUsers struct {
 
 	//starter:component
-	_as func(testboot.BootingRegistry) //starter:as(".")
+	_as func(units.Units) //starter:as(".")
 
 	AC          application.Context //starter:inject("context")
 	Userservice rbac.UserService    //starter:inject("#")
 }
 
-func (inst *TestAdminUsers) _impl() {
-	inst._as(inst)
+func (inst *TestAdminUsers) _impl() units.Units {
+	return inst
 }
 
-// Boots ...
-func (inst *TestAdminUsers) Boots() []*testboot.Boot {
-	bl := testboot.BootList{}
-	bl.Handle(http.MethodGet, "/api/v1/users", inst.doTestGetList)
-	bl.Handle(http.MethodPost, "/api/v1/users", inst.doTestInsert)
-	bl.Handle(http.MethodPost, "/api/v1/users/crud", inst.doTestCRUD)
-	return bl.List()
+// Units ...
+func (inst *TestAdminUsers) Units(list []*units.Registration) []*units.Registration {
+
+	list = append(list, &units.Registration{
+		Name:    cases.GetUserList,
+		Enabled: true,
+		Test:    inst.doTestGetList,
+	})
+	list = append(list, &units.Registration{
+		Name:    cases.InsertUser,
+		Enabled: true,
+		Test:    inst.doTestInsert,
+	})
+	list = append(list, &units.Registration{
+		Name:    cases.DoUserCRUD,
+		Enabled: true,
+		Test:    inst.doTestCRUD,
+	})
+
+	return list
 }
+
+// // Boots ...
+// func (inst *TestAdminUsers) Boots() []*testboot.Boot {
+// 	bl := testboot.BootList{}
+// 	bl.Handle(http.MethodGet, "/api/v1/users", inst.doTestGetList)
+// 	bl.Handle(http.MethodPost, "/api/v1/users", inst.doTestInsert)
+// 	bl.Handle(http.MethodPost, "/api/v1/users/crud", inst.doTestCRUD)
+// 	return bl.List()
+// }
 
 func (inst *TestAdminUsers) makeUserName() rbac.UserName {
 	now := lang.Now()

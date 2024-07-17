@@ -1,7 +1,13 @@
 package main4securitygorm
 import (
+    p21f95db42 "github.com/starter-go/keyvalues"
+    pd671d76a1 "github.com/starter-go/mails"
+    p69cb21798 "github.com/starter-go/mails/templates"
     p24287f458 "github.com/starter-go/rbac"
+    pd998da514 "github.com/starter-go/security-gorm/internal/auth1/mail"
     pd2ff24bd1 "github.com/starter-go/security-gorm/internal/auth1/password"
+    pc09ab63bf "github.com/starter-go/security-gorm/internal/auth1/sms"
+    p3f7395081 "github.com/starter-go/security-gorm/internal/auth2"
     p047c6784c "github.com/starter-go/security-gorm/internal/implconvertor"
     p8617045c5 "github.com/starter-go/security-gorm/internal/impldao"
     p0d13f39fa "github.com/starter-go/security-gorm/internal/implservice"
@@ -9,6 +15,80 @@ import (
     p9621e8b71 "github.com/starter-go/security/random"
      "github.com/starter-go/application"
 )
+
+// type pd998da514.UserMailAuth in package:github.com/starter-go/security-gorm/internal/auth1/mail
+//
+// id:com-d998da5143ed7b39-mail-UserMailAuth
+// class:class-9d209f7c2504d33e6054a2c9998e9485-Registry
+// alias:
+// scope:singleton
+//
+type pd998da5143_mail_UserMailAuth struct {
+}
+
+func (inst* pd998da5143_mail_UserMailAuth) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-d998da5143ed7b39-mail-UserMailAuth"
+	r.Classes = "class-9d209f7c2504d33e6054a2c9998e9485-Registry"
+	r.Aliases = ""
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* pd998da5143_mail_UserMailAuth) new() any {
+    return &pd998da514.UserMailAuth{}
+}
+
+func (inst* pd998da5143_mail_UserMailAuth) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*pd998da514.UserMailAuth)
+	nop(ie, com)
+
+	
+    com.KVS = inst.getKVS(ie)
+    com.Mails = inst.getMails(ie)
+    com.Random = inst.getRandom(ie)
+    com.Templates = inst.getTemplates(ie)
+    com.MaxAgeSec = inst.getMaxAgeSec(ie)
+    com.TemplName = inst.getTemplName(ie)
+
+
+    return nil
+}
+
+
+func (inst*pd998da5143_mail_UserMailAuth) getKVS(ie application.InjectionExt)p21f95db42.Service{
+    return ie.GetComponent("#alias-21f95db421796c61fc702c5dfd6515de-Service").(p21f95db42.Service)
+}
+
+
+func (inst*pd998da5143_mail_UserMailAuth) getMails(ie application.InjectionExt)pd671d76a1.Service{
+    return ie.GetComponent("#alias-d671d76a169061f84f6814f84b98af24-Service").(pd671d76a1.Service)
+}
+
+
+func (inst*pd998da5143_mail_UserMailAuth) getRandom(ie application.InjectionExt)p9621e8b71.Service{
+    return ie.GetComponent("#alias-9621e8b71013b0fc25942a1749ed3652-Service").(p9621e8b71.Service)
+}
+
+
+func (inst*pd998da5143_mail_UserMailAuth) getTemplates(ie application.InjectionExt)p69cb21798.TemplateManager{
+    return ie.GetComponent("#alias-69cb21798ba841067147ba8fee303bf2-TemplateManager").(p69cb21798.TemplateManager)
+}
+
+
+func (inst*pd998da5143_mail_UserMailAuth) getMaxAgeSec(ie application.InjectionExt)int64{
+    return ie.GetInt64("${security.verification.mail.max-age-sec}")
+}
+
+
+func (inst*pd998da5143_mail_UserMailAuth) getTemplName(ie application.InjectionExt)string{
+    return ie.GetString("${security.verification.mail.template}")
+}
+
+
 
 // type pd2ff24bd1.RootAuth in package:github.com/starter-go/security-gorm/internal/auth1/password
 //
@@ -118,6 +198,82 @@ func (inst*pd2ff24bd19_password_UsersAuth) getUserDao(ie application.InjectionEx
 
 func (inst*pd2ff24bd19_password_UsersAuth) getUserCvt(ie application.InjectionExt)pf5d2c6fae.UserConvertor{
     return ie.GetComponent("#alias-f5d2c6fae036814399fa2ed06c0dc99f-UserConvertor").(pf5d2c6fae.UserConvertor)
+}
+
+
+
+// type pc09ab63bf.UserPhoneAuth in package:github.com/starter-go/security-gorm/internal/auth1/sms
+//
+// id:com-c09ab63bf49c468b-sms-UserPhoneAuth
+// class:class-9d209f7c2504d33e6054a2c9998e9485-Registry
+// alias:
+// scope:singleton
+//
+type pc09ab63bf4_sms_UserPhoneAuth struct {
+}
+
+func (inst* pc09ab63bf4_sms_UserPhoneAuth) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-c09ab63bf49c468b-sms-UserPhoneAuth"
+	r.Classes = "class-9d209f7c2504d33e6054a2c9998e9485-Registry"
+	r.Aliases = ""
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* pc09ab63bf4_sms_UserPhoneAuth) new() any {
+    return &pc09ab63bf.UserPhoneAuth{}
+}
+
+func (inst* pc09ab63bf4_sms_UserPhoneAuth) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*pc09ab63bf.UserPhoneAuth)
+	nop(ie, com)
+
+	
+
+
+    return nil
+}
+
+
+
+// type p3f7395081.NopAuth in package:github.com/starter-go/security-gorm/internal/auth2
+//
+// id:com-3f7395081fbb8210-auth2-NopAuth
+// class:class-9d209f7c2504d33e6054a2c9998e9485-Registry
+// alias:
+// scope:singleton
+//
+type p3f7395081f_auth2_NopAuth struct {
+}
+
+func (inst* p3f7395081f_auth2_NopAuth) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-3f7395081fbb8210-auth2-NopAuth"
+	r.Classes = "class-9d209f7c2504d33e6054a2c9998e9485-Registry"
+	r.Aliases = ""
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* p3f7395081f_auth2_NopAuth) new() any {
+    return &p3f7395081.NopAuth{}
+}
+
+func (inst* p3f7395081f_auth2_NopAuth) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*p3f7395081.NopAuth)
+	nop(ie, com)
+
+	
+
+
+    return nil
 }
 
 
