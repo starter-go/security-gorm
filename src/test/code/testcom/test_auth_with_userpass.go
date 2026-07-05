@@ -15,19 +15,19 @@ import (
 type TestAuthWithUserPassword struct {
 
 	//starter:component
-	_as func(units.Units) //starter:as(".")
+	_as func(units.Unit) //starter:as(".")
 
 	AC              application.Context //starter:inject("context")
 	RbacAuthService rbac.AuthService    //starter:inject("#")
 
 }
 
-func (inst *TestAuthWithUserPassword) _impl() units.Units {
+func (inst *TestAuthWithUserPassword) _impl() units.Unit {
 	return inst
 }
 
 // Units ...
-func (inst *TestAuthWithUserPassword) Units(list []*units.Registration) []*units.Registration {
+func (inst *TestAuthWithUserPassword) ListRegistrations(list []*units.Registration) []*units.Registration {
 
 	// bl := testboot.BootList{}
 	// bl.Handle(http.MethodGet, "/api//", inst.run)
@@ -36,15 +36,15 @@ func (inst *TestAuthWithUserPassword) Units(list []*units.Registration) []*units
 	list = append(list, &units.Registration{
 		Name:    cases.LoginWithPassword,
 		Enabled: true,
-		Test:    inst.run,
+		Do:      inst.run,
 	})
 
 	return list
 }
 
-func (inst *TestAuthWithUserPassword) run() error {
+func (inst *TestAuthWithUserPassword) run(ctx context.Context) error {
 
-	ctx := context.Background()
+	// ctx := context.Background()
 	au := []*rbac.AuthDTO{}
 
 	au = append(au, &rbac.AuthDTO{

@@ -16,7 +16,7 @@ import (
 type TestAuthWithEmail struct {
 
 	//starter:component
-	_as func(units.Units) //starter:as(".")
+	_as func(units.Unit) //starter:as(".")
 
 	AC          application.Context //starter:inject("context")
 	AuthService rbac.AuthService    //starter:inject("#")
@@ -25,35 +25,35 @@ type TestAuthWithEmail struct {
 
 }
 
-func (inst *TestAuthWithEmail) _impl() units.Units {
+func (inst *TestAuthWithEmail) _impl() units.Unit {
 	return inst
 }
 
 // Units ...
-func (inst *TestAuthWithEmail) Units(list []*units.Registration) []*units.Registration {
+func (inst *TestAuthWithEmail) ListRegistrations(list []*units.Registration) []*units.Registration {
 
 	list = append(list, &units.Registration{
 		Name:    cases.HelpByMail,
 		Enabled: true,
-		Test:    inst.runHelpByMail,
+		Do:      inst.runHelpByMail,
 	})
 	list = append(list, &units.Registration{
 		Name:    cases.SendcodeByMail,
 		Enabled: true,
-		Test:    inst.runSendCodeByMail,
+		Do:      inst.runSendCodeByMail,
 	})
 	list = append(list, &units.Registration{
 		Name:    cases.LoginByMail,
 		Enabled: true,
-		Test:    inst.runLoginByMail,
+		Do:      inst.runLoginByMail,
 	})
 
 	return list
 }
 
-func (inst *TestAuthWithEmail) runHelpByMail() error {
+func (inst *TestAuthWithEmail) runHelpByMail(ctx context.Context) error {
 
-	ctx := context.Background()
+	// ctx := context.Background()
 	action := auth.ActionLogin
 	mech := auth.MechanismEmail
 	alist := make([]*rbac.AuthDTO, 0)
@@ -69,9 +69,9 @@ func (inst *TestAuthWithEmail) runHelpByMail() error {
 	return inst.logResult(alist2, err)
 }
 
-func (inst *TestAuthWithEmail) runSendCodeByMail() error {
+func (inst *TestAuthWithEmail) runSendCodeByMail(ctx context.Context) error {
 
-	ctx := context.Background()
+	// ctx := context.Background()
 	action := auth.ActionLogin
 	mech := auth.MechanismEmail
 	alist := make([]*rbac.AuthDTO, 0)
@@ -87,9 +87,9 @@ func (inst *TestAuthWithEmail) runSendCodeByMail() error {
 	return inst.logResult(alist2, err)
 }
 
-func (inst *TestAuthWithEmail) runLoginByMail() error {
+func (inst *TestAuthWithEmail) runLoginByMail(ctx context.Context) error {
 
-	ctx := context.Background()
+	// ctx := context.Background()
 	action := auth.ActionLogin
 	mech := auth.MechanismEmail
 	alist := make([]*rbac.AuthDTO, 0)

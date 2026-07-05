@@ -11,20 +11,20 @@ import (
 func TestHelpByMail(t *testing.T) {
 
 	obj := &testcom.TestAuthWithEmail{}
-	vlog.Debug("ref", obj.Units(nil))
+	vlog.Debug("ref", obj.ListRegistrations(nil))
 	testWithCaseName(cases.HelpByMail, t)
 }
 
 func TestSendcodeByMail(t *testing.T) {
 
 	obj := &testcom.TestAuthWithEmail{}
-	vlog.Debug("ref", obj.Units(nil))
+	vlog.Debug("ref", obj.ListRegistrations(nil))
 	testWithCaseName(cases.SendcodeByMail, t)
 }
 
 func TestLoginByMail(t *testing.T) {
 
 	obj := &testcom.TestAuthWithEmail{}
-	vlog.Debug("ref", obj.Units(nil))
+	vlog.Debug("ref", obj.ListRegistrations(nil))
 	testWithCaseName(cases.LoginByMail, t)
 }

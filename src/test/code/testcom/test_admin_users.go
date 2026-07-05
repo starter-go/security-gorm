@@ -1,6 +1,7 @@
 package testcom
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"strconv"
@@ -17,33 +18,33 @@ import (
 type TestAdminUsers struct {
 
 	//starter:component
-	_as func(units.Units) //starter:as(".")
+	_as func(units.Unit) //starter:as(".")
 
 	AC          application.Context //starter:inject("context")
 	Userservice rbac.UserService    //starter:inject("#")
 }
 
-func (inst *TestAdminUsers) _impl() units.Units {
+func (inst *TestAdminUsers) _impl() units.Unit {
 	return inst
 }
 
 // Units ...
-func (inst *TestAdminUsers) Units(list []*units.Registration) []*units.Registration {
+func (inst *TestAdminUsers) ListRegistrations(list []*units.Registration) []*units.Registration {
 
 	list = append(list, &units.Registration{
 		Name:    cases.GetUserList,
 		Enabled: true,
-		Test:    inst.doTestGetList,
+		Do:      inst.doTestGetList,
 	})
 	list = append(list, &units.Registration{
 		Name:    cases.InsertUser,
 		Enabled: true,
-		Test:    inst.doTestInsert,
+		Do:      inst.doTestInsert,
 	})
 	list = append(list, &units.Registration{
 		Name:    cases.DoUserCRUD,
 		Enabled: true,
-		Test:    inst.doTestCRUD,
+		Do:      inst.doTestCRUD,
 	})
 
 	return list
@@ -64,8 +65,8 @@ func (inst *TestAdminUsers) makeUserName() rbac.UserName {
 	return rbac.UserName("user-" + str)
 }
 
-func (inst *TestAdminUsers) doTestInsert() error {
-	ctx := inst.AC
+func (inst *TestAdminUsers) doTestInsert(ctx context.Context) error {
+	// ctx := inst.AC
 	name := inst.makeUserName()
 	o1 := &rbac.UserDTO{
 		Name: name,
@@ -105,8 +106,8 @@ func (inst *TestAdminUsers) doTestGetOne() error {
 	return nil
 }
 
-func (inst *TestAdminUsers) doTestGetList() error {
-	ctx := inst.AC
+func (inst *TestAdminUsers) doTestGetList(ctx context.Context) error {
+	// ctx := inst.AC
 	ser := inst.Userservice
 	list, err := ser.List(ctx, nil)
 	if err != nil {
@@ -116,9 +117,9 @@ func (inst *TestAdminUsers) doTestGetList() error {
 	return nil
 }
 
-func (inst *TestAdminUsers) doTestCRUD() error {
+func (inst *TestAdminUsers) doTestCRUD(ctx context.Context) error {
 
-	ctx := inst.AC
+	// ctx := inst.AC
 	ser := inst.Userservice
 	name := inst.makeUserName()
 

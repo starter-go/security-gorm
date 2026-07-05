@@ -3,16 +3,16 @@ module github.com/starter-go/security-gorm
 go 1.20
 
 require (
-	github.com/starter-go/application v0.9.26 // direct
+	github.com/starter-go/application v0.9.28 // direct
 	github.com/starter-go/base v0.9.11 // direct
-	github.com/starter-go/libgorm v0.9.12 // direct
+	github.com/starter-go/libgorm v0.9.16 // direct
 	github.com/starter-go/module-gorm-mysql v1.0.0 // direct
 	github.com/starter-go/module-gorm-sqlserver v1.0.0 // direct
-	github.com/starter-go/rbac v0.0.11 // direct
-	github.com/starter-go/security v1.0.55 // direct
-	github.com/starter-go/starter v1.0.10 // direct
-	github.com/starter-go/vlog v0.9.8 // direct
-	gorm.io/gorm v1.25.5 // direct
+	github.com/starter-go/rbac v0.0.14 // direct
+	github.com/starter-go/security v0.1.58 // direct
+	github.com/starter-go/starter v1.0.14 // direct
+	github.com/starter-go/vlog v0.9.12 // direct
+	gorm.io/gorm v1.30.1 // direct
 )
 
 require (
@@ -23,16 +23,16 @@ require (
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
 	github.com/microsoft/go-mssqldb v1.6.0 // indirect
-	github.com/starter-go/afs v0.9.5 // indirect
+	github.com/starter-go/afs v0.9.13 // indirect
 	github.com/starter-go/configen v0.9.5 // indirect
+	github.com/starter-go/i18n v0.0.6 // direct
 	github.com/starter-go/keyvalues v0.0.1 // direct
-	github.com/starter-go/units v0.0.6 // direct
+	github.com/starter-go/mails v0.0.6 // direct
+	github.com/starter-go/units v0.1.3 // direct
 	golang.org/x/crypto v0.14.0 // indirect
-	golang.org/x/text v0.13.0 // indirect
+	golang.org/x/text v0.20.0 // indirect
 	gorm.io/driver/mysql v1.5.2 // indirect
 	gorm.io/driver/sqlserver v1.5.2 // indirect
 )
 
-require github.com/starter-go/mails v0.0.5 // direct
-
-require github.com/starter-go/i18n v0.0.3 // direct
+require golang.org/x/sys v0.22.0 // indirect

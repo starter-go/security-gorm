@@ -1,6 +1,7 @@
 package testcom
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 
@@ -15,33 +16,33 @@ import (
 type TestAdminRoles struct {
 
 	//starter:component
-	_as func(units.Units) //starter:as(".")
+	_as func(units.Unit) //starter:as(".")
 
 	AC          application.Context //starter:inject("context")
 	RoleService rbac.RoleService    //starter:inject("#")
 }
 
-func (inst *TestAdminRoles) _impl() units.Units {
+func (inst *TestAdminRoles) _impl() units.Unit {
 	return inst
 }
 
 // Units ...
-func (inst *TestAdminRoles) Units(list []*units.Registration) []*units.Registration {
+func (inst *TestAdminRoles) ListRegistrations(list []*units.Registration) []*units.Registration {
 
 	list = append(list, &units.Registration{
 		Name:    cases.GetRoleList,
 		Enabled: true,
-		Test:    inst.doTestGetList,
+		Do:      inst.doTestGetList,
 	})
 	list = append(list, &units.Registration{
 		Name:    cases.InsertRole,
 		Enabled: true,
-		Test:    inst.doTestInsert,
+		Do:      inst.doTestInsert,
 	})
 	list = append(list, &units.Registration{
 		Name:    cases.DoRoleCRUD,
 		Enabled: true,
-		Test:    inst.doTestCRUD,
+		Do:      inst.doTestCRUD,
 	})
 
 	return list
@@ -56,8 +57,8 @@ func (inst *TestAdminRoles) Units(list []*units.Registration) []*units.Registrat
 // 	return bl.List()
 // }
 
-func (inst *TestAdminRoles) doTestInsert() error {
-	ctx := inst.AC
+func (inst *TestAdminRoles) doTestInsert(ctx context.Context) error {
+	// ctx := inst.AC
 	o1 := &rbac.RoleDTO{
 		Name: "test",
 	}
@@ -96,13 +97,13 @@ func (inst *TestAdminRoles) doTestGetOne() error {
 	return nil
 }
 
-func (inst *TestAdminRoles) doTestGetList() error {
+func (inst *TestAdminRoles) doTestGetList(ctx context.Context) error {
 	return fmt.Errorf("no impl")
 }
 
-func (inst *TestAdminRoles) doTestCRUD() error {
+func (inst *TestAdminRoles) doTestCRUD(ctx context.Context) error {
 
-	ctx := inst.AC
+	// ctx := inst.AC
 	ser := inst.RoleService
 
 	o1 := &rbac.RoleDTO{

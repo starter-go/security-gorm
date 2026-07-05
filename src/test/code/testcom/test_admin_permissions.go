@@ -1,6 +1,7 @@
 package testcom
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"net/http"
@@ -18,33 +19,29 @@ import (
 type TestAdminPermissions struct {
 
 	//starter:component
-	_as func(units.Units) //starter:as(".")
+	_as func(units.Unit) //starter:as(".")
 
 	AC                application.Context    //starter:inject("context")
 	Permissionservice rbac.PermissionService //starter:inject("#")
 }
 
-func (inst *TestAdminPermissions) _impl() units.Units {
-	return inst
-}
-
-// Units ...
-func (inst *TestAdminPermissions) Units(list []*units.Registration) []*units.Registration {
+// ListRegistrations implements units.Unit.
+func (inst *TestAdminPermissions) ListRegistrations(list []*units.Registration) []*units.Registration {
 
 	list = append(list, &units.Registration{
 		Name:    cases.GetPermissionList,
 		Enabled: true,
-		Test:    inst.doTestGetList,
+		Do:      inst.doTestGetList,
 	})
 	list = append(list, &units.Registration{
 		Name:    cases.InsertPermission,
 		Enabled: true,
-		Test:    inst.doTestInsert,
+		Do:      inst.doTestInsert,
 	})
 	list = append(list, &units.Registration{
 		Name:    cases.DoPermissionCRUD,
 		Enabled: true,
-		Test:    inst.doTestCRUD,
+		Do:      inst.doTestCRUD,
 	})
 
 	return list
@@ -59,10 +56,11 @@ func (inst *TestAdminPermissions) Units(list []*units.Registration) []*units.Reg
 // 	return bl.List()
 // }
 
-func (inst *TestAdminPermissions) doTestInsert() error {
+func (inst *TestAdminPermissions) doTestInsert(ctx context.Context) error {
 	now := lang.Now()
 	stamp := strconv.FormatInt(now.Int(), 10)
-	ctx := inst.AC
+	// ctx := inst.AC
+
 	o1 := &rbac.PermissionDTO{
 		Method: http.MethodOptions,
 		Path:   "/test/666/" + stamp,
@@ -79,16 +77,16 @@ func (inst *TestAdminPermissions) doTestInsert() error {
 	return nil
 }
 
-func (inst *TestAdminPermissions) doTestUpdate() error {
+func (inst *TestAdminPermissions) doTestUpdate(ctx context.Context) error {
 	return fmt.Errorf("no impl")
 }
 
-func (inst *TestAdminPermissions) doTestDelete() error {
+func (inst *TestAdminPermissions) doTestDelete(ctx context.Context) error {
 	return fmt.Errorf("no impl")
 }
 
-func (inst *TestAdminPermissions) doTestGetOne() error {
-	ctx := inst.AC
+func (inst *TestAdminPermissions) doTestGetOne(ctx context.Context) error {
+	// ctx := inst.AC
 	const id = 1
 	o, err := inst.Permissionservice.Find(ctx, id)
 	if err != nil {
@@ -102,9 +100,9 @@ func (inst *TestAdminPermissions) doTestGetOne() error {
 	return nil
 }
 
-func (inst *TestAdminPermissions) doTestGetList() error {
+func (inst *TestAdminPermissions) doTestGetList(ctx context.Context) error {
 
-	ctx := inst.AC
+	// ctx := inst.AC
 	ser := inst.Permissionservice
 	query := &rbac.PermissionQuery{}
 	query.Pagination.Size = 3
@@ -121,9 +119,9 @@ func (inst *TestAdminPermissions) doTestGetList() error {
 	return nil
 }
 
-func (inst *TestAdminPermissions) doTestCRUD() error {
+func (inst *TestAdminPermissions) doTestCRUD(ctx context.Context) error {
 
-	ctx := inst.AC
+	// ctx := inst.AC
 	ser := inst.Permissionservice
 
 	o1 := &rbac.PermissionDTO{
@@ -167,4 +165,8 @@ func (inst *TestAdminPermissions) log(format string, o any) {
 		str := string(data)
 		vlog.Info(format, str)
 	}
+}
+
+func (inst *TestAdminPermissions) _impl() units.Unit {
+	return inst
 }

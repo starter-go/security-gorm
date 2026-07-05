@@ -14,22 +14,23 @@ func main() {
 
 func testWithCaseName(cname string, t *testing.T) {
 
-	args := []string{}
-	props := map[string]string{
+	a := []string{}
+	p := map[string]string{
 		"debug.enabled":        "1",
 		"debug.log-properties": "1",
 	}
-	mod := securitygorm.ModuleForTest()
+	m := securitygorm.ModuleForTest()
 
-	err := units.Run(&units.Config{
-		Args:       args,
-		Cases:      cname,
-		Module:     mod,
-		Properties: props,
+	c := &units.Context{
+		Arguments:  a,
+		Module:     m,
+		Properties: p,
 		T:          t,
-		UsePanic:   false,
-	})
+		UsePanic:   true,
+		Selector:   cname,
+	}
 
+	err := units.Run(c)
 	if err != nil {
 		t.Error(err)
 	}
