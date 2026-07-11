@@ -2,8 +2,8 @@ package securitygorm
 
 import (
 	"github.com/starter-go/application"
-	"github.com/starter-go/module-gorm-mysql/modules/mysql"
-	"github.com/starter-go/module-gorm-sqlserver/modules/sqlserver"
+	"github.com/starter-go/module-gorm-mysql/modules/mysql4libgorm"
+	"github.com/starter-go/module-gorm-sqlserver/modules/sqlserver4libgorm"
 	securitygorm1 "github.com/starter-go/security-gorm"
 	"github.com/starter-go/security-gorm/gen/test4securitygorm"
 	"github.com/starter-go/units/modules/units"
@@ -16,8 +16,8 @@ func ModuleForTest() application.Module {
 
 	mb.Depend(Module())
 	mb.Depend(units.Module())
-	mb.Depend(sqlserver.Module())
-	mb.Depend(mysql.Module())
+	mb.Depend(sqlserver4libgorm.Module())
+	mb.Depend(mysql4libgorm.Module())
 
 	return mb.Create()
 }

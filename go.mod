@@ -1,17 +1,15 @@
 module github.com/starter-go/security-gorm
 
-go 1.20
+go 1.23
+
+toolchain go1.24.7
 
 require (
-	github.com/starter-go/application v0.9.28 // direct
-	github.com/starter-go/base v0.9.11 // direct
-	github.com/starter-go/libgorm v0.9.16 // direct
-	github.com/starter-go/module-gorm-mysql v1.0.0 // direct
-	github.com/starter-go/module-gorm-sqlserver v1.0.0 // direct
-	github.com/starter-go/rbac v0.0.14 // direct
-	github.com/starter-go/security v0.1.58 // direct
-	github.com/starter-go/starter v1.0.14 // direct
-	github.com/starter-go/vlog v0.9.12 // direct
+	github.com/starter-go/application v0.10.0 // direct
+	github.com/starter-go/base v0.10.0 // direct
+	github.com/starter-go/rbac v0.10.0 // direct
+	github.com/starter-go/starter v0.10.0 // direct
+	github.com/starter-go/vlog v0.10.0 // direct
 	gorm.io/gorm v1.30.1 // direct
 )
 
@@ -23,16 +21,22 @@ require (
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
 	github.com/microsoft/go-mssqldb v1.6.0 // indirect
-	github.com/starter-go/afs v0.9.13 // indirect
-	github.com/starter-go/configen v0.9.5 // indirect
-	github.com/starter-go/i18n v0.0.6 // direct
-	github.com/starter-go/keyvalues v0.0.1 // direct
-	github.com/starter-go/mails v0.0.6 // direct
-	github.com/starter-go/units v0.1.3 // direct
+	github.com/starter-go/afs v0.10.0 // indirect
+	github.com/starter-go/configen v0.10.0 // indirect
 	golang.org/x/crypto v0.14.0 // indirect
 	golang.org/x/text v0.20.0 // indirect
 	gorm.io/driver/mysql v1.5.2 // indirect
 	gorm.io/driver/sqlserver v1.5.2 // indirect
 )
 
-require golang.org/x/sys v0.22.0 // indirect
+require (
+	github.com/starter-go/i18n v0.10.0 // indirect
+	github.com/starter-go/keyvalues v0.10.0 // indirect
+	github.com/starter-go/libgorm v0.10.0 // indirect
+	github.com/starter-go/mails v0.10.0 // indirect
+	github.com/starter-go/module-gorm-mysql v0.10.0 // indirect
+	github.com/starter-go/module-gorm-sqlserver v0.10.0 // indirect
+	github.com/starter-go/security v0.10.0 // indirect
+	github.com/starter-go/units v0.10.0 // indirect
+	golang.org/x/sys v0.22.0 // indirect
+)

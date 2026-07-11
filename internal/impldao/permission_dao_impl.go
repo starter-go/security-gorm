@@ -1,6 +1,7 @@
 package impldao
 
 import (
+	"context"
 	"fmt"
 
 	"github.com/starter-go/rbac"
@@ -15,8 +16,10 @@ type PermissionDaoImpl struct {
 	//starter:component
 	_as func(rbacdb.PermissionDAO) //starter:as("#")
 
-	Agent       rbacdb.LocalAgent  //starter:inject("#")
-	UUIDService random.UUIDService //starter:inject("#")
+	Agent       rbacdb.LocalAgent          //starter:inject("#")
+	UUIDService random.UUIDService         //starter:inject("#")
+	Convertor   rbacdb.PermissionConvertor //starter:inject("#")
+
 }
 
 func (inst *PermissionDaoImpl) _impl(a rbacdb.PermissionDAO) {
@@ -93,14 +96,25 @@ func (inst *PermissionDaoImpl) List(db *gorm.DB, q *rbac.PermissionQuery) ([]*rb
 	}
 	list := inst.modelList()
 	item := inst.model()
+	want1 := q.Want
 
 	f := finder{}
 	f.all = q.All
 	f.listModel = &list
 	f.itemModel = item
 	f.page = &q.Pagination
-	f.conditions = &q.Conditions
+	// f.conditions = &q.Conditions
 	f.db = inst.Agent.DB(db)
+
+	if want1 != nil {
+		ctx := context.Background()
+		conv := inst.Convertor
+		want2, err := conv.ConvertD2E(ctx, want1)
+		if err != nil {
+			return nil, err
+		}
+		f.want = want2
+	}
 
 	err := f.find()
 	if err != nil {

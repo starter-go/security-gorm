@@ -105,10 +105,16 @@ func (inst *TestAdminPermissions) doTestGetList(ctx context.Context) error {
 	// ctx := inst.AC
 	ser := inst.Permissionservice
 	query := &rbac.PermissionQuery{}
+	want := &rbac.PermissionDTO{}
+
 	query.Pagination.Size = 3
 	query.Pagination.Page = 1
-	query.Conditions.Query = "creator = ?"
-	query.Conditions.Args = []string{"6"}
+	query.Want = want
+
+	// query.Conditions.Query = "creator = ?"
+	// query.Conditions.Args = []string{"6"}
+
+	want.Creator = 6
 
 	list, err := ser.List(ctx, query)
 	if err != nil {

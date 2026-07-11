@@ -14,6 +14,7 @@ type finder struct {
 	conditions *rbac.Conditions
 	itemModel  any
 	listModel  any
+	want       any
 	all        bool // list-all-items
 }
 
